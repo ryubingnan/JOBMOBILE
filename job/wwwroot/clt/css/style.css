@@ -1,0 +1,810 @@
+﻿@charset "UTF-8";
+/*
+html5doctor.com Reset Stylesheet
+v1.6.1
+Last Updated: 2010-09-17
+Author: Richard Clark - http://richclarkdesign.com
+Twitter: @rich_clark
+*/
+html,
+body,
+div,
+span,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+abbr,
+address,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+samp,
+small,
+strong,
+sub,
+sup,
+var,
+b,
+i,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+    padding: 0;
+    margin: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
+    border: 0;
+    outline: 0;
+}
+
+body {
+    line-height: 1;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    display: block;
+}
+
+    nav ul {
+        list-style: none;
+    }
+
+blockquote,
+q {
+    quotes: none;
+}
+
+    blockquote::before,
+    blockquote::after,
+    q::before,
+    q::after {
+        content: "";
+        content: none;
+    }
+
+a {
+    padding: 0;
+    margin: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
+}
+
+/* change colours to suit your needs */
+ins {
+    color: #000;
+    text-decoration: none;
+    background-color: #ff9;
+}
+
+/* change colours to suit your needs */
+mark {
+    font-style: italic;
+    font-weight: bold;
+    color: #000;
+    background-color: #ff9;
+}
+
+del {
+    text-decoration: line-through;
+}
+
+abbr[title],
+dfn[title] {
+    cursor: help;
+    border-bottom: 1px dotted;
+}
+
+table {
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+/* change border colour to suit your needs */
+hr {
+    display: block;
+    height: 1px;
+    padding: 0;
+    margin: 1em 0;
+    border: 0;
+    border-top: 1px solid #ccc;
+}
+
+input,
+select {
+    vertical-align: middle;
+}
+
+html {
+    font-family: YuGothic, "游ゴシック体", "Yu Gothic Medium", "游ゴシック Medium", Meiryo, sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    line-height: 1;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.pc {
+    display: block;
+}
+
+@media screen and (max-width: 800px) {
+    .pc {
+        display: none;
+    }
+}
+
+.pc--inline {
+    display: inline-block;
+}
+
+@media screen and (max-width: 800px) {
+    .pc--inline {
+        display: none;
+    }
+}
+
+.sp {
+    display: none;
+}
+
+@media screen and (max-width: 800px) {
+    .sp {
+        display: block;
+    }
+}
+
+.sp--inline {
+    display: none;
+}
+
+@media screen and (max-width: 800px) {
+    .sp--inline {
+        display: inline-block;
+    }
+}
+
+.main {
+    display: block;
+    padding-top: 131px;
+    background-color: #f9f9f9;
+}
+
+@media screen and (max-width: 800px) {
+    .main {
+        padding: 0;
+    }
+}
+
+.header {
+    position: fixed;
+    z-index: 100;
+    width: 100%;
+    background-color: #fff;
+}
+
+@media screen and (max-width: 800px) {
+    .header {
+        position: initial;
+    }
+}
+
+.header__wrapper {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1000px;
+    padding: 36px 0 35px;
+    margin: 0 auto;
+}
+
+@media screen and (max-width: 800px) {
+    .header__wrapper {
+        padding: 4vw 5.3333333333vw;
+    }
+}
+
+.header__logoImg {
+    width: 400px;
+}
+
+@media screen and (max-width: 800px) {
+    .header__logoImg {
+        width: 64.8vw;
+        margin-top: 1.0666666667vw;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .header__cvLogoImg {
+        width: 6.4vw;
+    }
+}
+
+
+.footer__upper {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding: 50px 0 40px;
+    background-color: #f9f9f9;
+}
+
+@media screen and (max-width: 800px) {
+    .footer__upper {
+        padding: 0 0 30px;
+    }
+}
+
+.footer__scrollTopButton, .footer__corporateLogoImg, .footer__serviceLogo, .footer__serviceLogoImg {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.footer__annotation {
+    margin-top: 30px;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.5;
+    color: #6b7380;
+    text-align: center;
+}
+
+@media screen and (max-width: 800px) {
+    .footer__annotation {
+        margin-top: 6.4vw;
+        font-weight: 400;
+    }
+}
+
+.footer__scrollTopButtonImg {
+    width: 50%;
+}
+
+.footer_complete {
+    display: none;
+}
+
+@media screen and (max-width: 800px) {
+    .footer_complete {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .footer__scrollTopButtonImg {
+        width: 17.6vw;
+    }
+}
+
+.footer__scrollTopButton {
+    padding: 0;
+    background-color: transparent;
+    border: none;
+}
+
+    .footer__scrollTopButton:hover {
+        opacity: 0.7;
+    }
+
+.footer__serviceLogoImg {
+    width: 300px;
+    margin-top: 50px;
+}
+
+@media screen and (max-width: 800px) {
+    .footer__serviceLogoImg {
+        width: 66.6666666667vw;
+    }
+}
+
+.footer__lower {
+    display: flex;
+    width: 100%;
+    max-width: 1000px;
+    padding: 59px 0 58px;
+    margin: 0 auto;
+}
+
+@media screen and (max-width: 800px) {
+    .footer__lower {
+        padding: 40px 20px;
+    }
+}
+
+.footer__corporateLogo {
+    display: flex;
+}
+
+.footer__corporateLogoImg {
+    align-self: flex-start;
+    width: 143px;
+}
+
+@media screen and (max-width: 800px) {
+    .footer__corporateLogoImg {
+        width: 38.1333333333vw;
+    }
+}
+
+.footer__copyright {
+    display: flex;
+    align-items: flex-end;
+    margin-left: 10px;
+    font-family: "メイリオ", "Meiryo", sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    color: #435b67;
+}
+
+.mv {
+    background-image: url(../img/mv.png);
+    background-size: cover;
+}
+
+@media screen and (max-width: 800px) {
+    .mv {
+        height: 78vw;
+        background-image: url(../img/mv.png);
+    }
+}
+
+@media screen and (min-width:700px) and (max-width:799px) {
+    .mv {
+        height: 48vw;
+        background-image: url(../img/mv.png);
+    }
+
+    .mv__annotation {
+        top: 40vw !important;
+    }
+}
+
+.mv__wrapper {
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+}
+
+@media screen and (min-width: 801px) {
+    .mv__wrapper {
+        max-width: 800px;
+        padding-top: 350px;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .mv__wrapper {
+        padding-top: 0;
+    }
+}
+
+.mv__textWrapper {
+    position: absolute;
+}
+
+@media screen and (min-width: 801px) {
+    .mv__textWrapper {
+        width: 100%;
+        top: 40px;
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .mv__textWrapper {
+        width: 100%;
+    }
+}
+
+.mv__title {
+    font-weight: 700;
+    line-height: 1.5;
+    color: #ffffff;
+    letter-spacing: 0.05em;
+}
+
+@media screen and (min-width: 801px) {
+    .mv__title {
+        display: inline-block;
+        font-size: 32px;
+        position: relative;
+    }
+
+        .mv__title:after {
+            position: absolute;
+            content: " ";
+            display: block;
+            border-bottom: solid 5px #ffffff;
+            border-radius: 5px;
+            bottom: -30px;
+            width: 30%;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+}
+
+@media screen and (max-width: 800px) {
+    .mv__title {
+        padding: 5%;
+        font-size: 20px;
+        text-align: center;
+    }
+}
+
+.mv__text {
+    color: #ffffff;
+    letter-spacing: 0.1em;
+    line-height: 1.5em;
+    text-align: center;
+}
+
+.mv__text_tel {
+    color: #ffffff;
+    font-weight: bold;
+    margin-top: 25px;
+    letter-spacing: 0.1em;
+    line-height: 1.5em;
+    text-align: center;
+}
+
+@media screen and (min-width: 801px) {
+    .mv__text {
+        margin-top: 66px;
+        font-size: 18px;
+    }
+}
+
+.mv__annotation {
+    position: absolute;
+    font-weight: 500;
+    line-height: 1.5;
+    color: #ffffff;
+    width: 100%;
+    top: 68vw;
+    text-align: center;
+}
+
+@media screen and (min-width: 801px) {
+    .mv__annotation {
+        top: 85%;
+        font-size: 14px;
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .floatMenu {
+        position: fixed;
+        bottom: 0;
+        z-index: 100;
+        width: 100%;
+        visibility: hidden;
+        background-color: rgba(190, 190, 190, 0.69);
+        opacity: 0;
+        transition: 0.4s;
+        transform: translateY(100px);
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .floatMenu--active {
+        visibility: visible;
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .floatMenu__wrapper {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        max-width: 88.8vw;
+        padding: 5.3333333333vw 0;
+        margin: 0 auto;
+        font-style: normal;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .floatMenu__brochureImg {
+        width: 8vw;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .floatMenu__cvButton {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 69.0666666667vw;
+        padding: 4vw 4.2666666667vw 4vw 4.8vw;
+        font-size: 4.8vw;
+        line-height: 1;
+        color: #fff;
+        text-align: right;
+   /*     background-color: #e68845;*/
+        border: none;
+        border-radius: 2.1333333333vw;
+    }
+}
+
+
+
+/* フォーム */
+
+section.form {
+    margin: auto;
+    width: 700px;
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+@media screen and (max-width: 800px) {
+    section.form {
+        width: 320px;
+    }
+}
+
+.form form .form-item {
+    margin-bottom: 40px;
+}
+
+    .form form .form-item .error {
+        color: #d9534f;
+        margin-top: 10px;
+        display: none;
+    }
+
+    .form form .form-item .form-item-label {
+        content: "";
+        width: 1px;
+        display: inline;
+        height: 20px;
+        border-left: solid 2px #384766;
+        padding-left: 5px;
+        font-size: 18px;
+    }
+
+    .form form .form-item .confirmation {
+        border: none;
+        margin-top: 10px;
+    }
+
+    .form form .form-item .form-item-label .required {
+        display: inline-block;
+        padding: 5px 8px;
+        font-size: .75em;
+        font-weight: 700;
+        line-height: 1;
+        color: #fff;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: baseline;
+        border-radius: 0.25rem;
+/*        background-color: #e68845;*/
+        margin-bottom: 20px;
+        margin-left: 10px;
+    }
+
+
+    .form form .form-item .name {
+        display: flex;
+        align-items: center;
+    }
+
+        .form form .form-item .name .s,
+        .form form .form-item .name .m {
+            display: inline-block;
+            font-size: 16px;
+            width: 40px;
+        }
+
+@media screen and (max-width: 800px) {
+    .form form .form-item .name .s,
+    .form form .form-item .name .m {
+        width: 38px;
+        display: inline-block;
+    }
+}
+
+.form form .form-item .name .form-item-input {
+    width: 300px;
+    margin-right: 30px;
+    display: contents;
+}
+
+    .form form .form-item .name .form-item-input .input-s {
+        width: 300px;
+        height: 40px;
+        padding-left: 10px;
+        margin-right: 20px;
+        font-size: 16px;
+    }
+
+@media screen and (max-width: 800px) {
+    .form form .form-item .name .form-item-input .input-s {
+        width: 120px;
+        margin-right: 10px;
+    }
+}
+
+.form form .form-item .name .form-item-input .input-m {
+    width: 300px;
+    height: 40px;
+    padding-left: 10px;
+    font-size: 16px;
+}
+
+@media screen and (max-width: 800px) {
+    .form form .form-item .name .form-item-input .input-m {
+        width: 120px;
+    }
+}
+
+.form form .form-item .email p input,
+.form form .form-item .tel p input,
+.form form .form-item .company p input,
+.form form .form-item .company_url p input {
+    width: 700px;
+    height: 40px;
+    padding-left: 10px;
+    margin-right: 20px;
+    font-size: 16px;
+}
+
+@media screen and (max-width: 800px) {
+    .form form .form-item .email p input,
+    .form form .form-item .tel p input,
+    .form form .form-item .company p input,
+    .form form .form-item .company_url p input {
+        width: 320px;
+    }
+}
+
+.form form .form-item .annotation {
+    font-size: 13px;
+    margin-top: 10px;
+    color: #2f3b55;
+    line-height: 1.5;
+}
+
+.form form .send {
+    text-align: center;
+    font-size: 18px;
+    color: #7f7f7f;
+}
+
+    .form form .send p span {
+        color: #2f3b55;
+    }
+
+    .form form .send .btn {
+        width: 660px;
+        height: 65px;
+        color: #ffffff;
+/*        background-color: #e68845;*/
+        font-size: 20px;
+        margin-top: 60px;
+        border: 0;
+        border-radius: 4px;
+        box-shadow: 2px 2px 4px -2px grey;
+    }
+
+@media screen and (max-width: 800px) {
+    .form form .send p {
+        line-height: 1.5;
+    }
+
+    .form form .send .btn {
+        width: 320px;
+    }
+}
+
+
+
+
+/* thanksページ */
+.complete {
+    width: 700px;
+    margin: auto;
+    text-align: center;
+    margin-top: 70px;
+}
+
+@media screen and (max-width: 800px) {
+    .complete {
+        width: 320px;
+        margin-top: 40px;
+        padding-bottom: 40px;
+    }
+}
+
+.complete img {
+    width: 80px;
+}
+
+.complete .send {
+    margin-top: 60px;
+    margin-bottom: 70px;
+    font-size: 36px;
+    font-weight: bold;
+    color: #2f3b55;
+}
+
+@media screen and (max-width: 800px) {
+    .complete .send {
+        margin: 40px 0;
+        font-size: 24px;
+    }
+}
+
+.complete .text {
+    color: #626874;
+    font-size: 17px;
+    line-height: 1.7;
+}

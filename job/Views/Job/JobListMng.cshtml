@@ -1,0 +1,153 @@
+﻿@{
+    ViewData["Title"] = "掲載一覧管理";
+}
+<div class="JobListMngArea">
+    @*小导航*@
+    <div class="navigationSmall">
+        <ul>
+            <li>
+                <a href="/">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" style="float:left;" fill="currentColor" class="bi bi-house-heart-fill" viewBox="0 0 16 16">
+                        <path d="M7.293 1.5a1 1 0 0 1 1.414 0L11 3.793V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v3.293l2.354 2.353a.5.5 0 0 1-.708.707L8 2.207 1.354 8.853a.5.5 0 1 1-.708-.707L7.293 1.5Z" />
+                        <path d="m14 9.293-6-6-6 6V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V9.293Zm-6-.811c1.664-1.673 5.825 1.254 0 5.018-5.825-3.764-1.664-6.691 0-5.018Z" />
+                    </svg><span>トップ</span>
+                </a>
+            </li>
+            <li>/掲載一覧管理</li>
+        </ul>
+    </div>
+
+    @*搜索框*@
+    <div>
+        <table>
+            <tr style="border-bottom:none;">
+                <td></td>
+                <td>
+                    <input class="form-control" type="text" v-model="iptTitle" placeholder="タイトル" />
+                </td>
+                <td>
+                    <input class="form-control" type="text" v-model="iptCategory" placeholder="タイプ" />
+                </td>
+                <td style="text-align:left;">
+                    <button type="button" class="btn btn-primary btn-light　marginRight10" @@click="handleGetJobs">検索</button>
+                    <button type="button" class="btn btn-primary btn-light" @@click="handleClear">クリア</button>
+                </td>
+                <td></td>
+            </tr>
+            </table>
+</div>
+
+    @*一覧表*@
+<table class="table table-striped table-hover">
+    <thead>
+        <tr style="font-weight:bold;">
+            <td>会員ID</td>
+            <td>タイトル</td>
+            <td>カテゴリー</td>
+            <td>更新日付</td>
+            <td>操作</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr v-for="(job, i) in jobs">
+            <td>
+                <span id="ctl00_body_RepeaterAllListInfo_ctl00_Label1">{{job.memberID}}</span>
+            </td>
+            <td>
+                <span id="ctl00_body_RepeaterAllListInfo_ctl00_Label1">{{job.title}}</span>
+            </td>
+            <td>
+                <span id="ctl00_body_RepeaterAllListInfo_ctl00_Label1">{{job.category}}</span>
+            </td>
+            <td>
+                <span id="ctl00_body_RepeaterAllListInfo_ctl00_Label1">{{job.updateTime}}</span>
+            </td>
+            <td>
+                <a :href="'/job/Addjob/' + job.id" class="btn btn-primary btn-light marginRight10 white">
+                    編集
+                </a>
+                <button type="button" class="btn btn-primary btn-light"  @@click="handleDelete(job.id)">削除</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+    <table border="0">
+        <tr>
+            <td colspan="5" style="text-align:center;">
+                <el-pagination v-model:current-page="pagination.pageIndex"
+                               :page-sizes="[12, 24, 36]"
+                               v-model:page-size="pagination.pageSize"
+                               layout="total, sizes, prev, pager, next, jumper"
+                               :total="pagination.totalCount"
+                               @@size-change="handleGetJobs"
+                               @@current-change="handleGetJobs">
+                </el-pagination>
+            </td>
+        </tr>
+    </table>
+</div>
+
+
+@section Scripts{
+    <script>
+        createVueApp({
+            /*返回数据*/
+            data() {
+                return {
+                    jobs: [],
+                    pagination: {
+                        pageIndex: 1,
+                        pageSize: 12,
+                        totalCount: 0,
+                    },
+                    iptTitle: '',
+                    iptCategory: '',
+                    iptUpdatetime: ''
+                }
+            },
+            /*页面加载完成后回调下方的列表方法*/
+            mounted() {
+                this.handleGetJobs();
+               /*菜单光标颜色*/
+                $('#JobListMngLeftBarBtn').css('color', '#ae0000')
+            },
+            /*获取列表*/
+            methods: {
+                handleGetJobs() {
+                    this.pagination.Title = this.iptTitle
+                    this.pagination.Category = this.iptCategory
+                    this.getJobs(this.pagination).then(res => {
+                        this.jobs = res.items
+                        this.pagination.totalCount = res.totalCount
+                    })
+                },
+                handleTabClick() {
+
+                },
+
+                /*发送请求*/
+                getJobs(pagination) {
+                    return this.$http.post('/job/getlist', pagination)
+                },
+                handleClear() {
+                    this.iptTitle = ''
+                    this.iptCategory = ''
+                },
+                handleDelete(id) {
+                    this.$http.post('/system/deleteJob', id).then(res => {
+                        if (res) {
+                            this.handleGetJobs()
+                        } else {
+                            this.$message({
+                                message: '删除失败',
+                                type: 'error'
+                            });
+                        }
+                    })
+                }
+            }
+        })
+
+    </script>
+}

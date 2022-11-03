@@ -1,0 +1,454 @@
+﻿/*公用表格样式*/
+.tw-table{
+    border-top: 1px solid #ccc;
+}
+.tw-tr{
+    border-bottom: 1px solid #ccc;
+    padding: 2px 0;
+    display: flex;
+    align-items: stretch;
+}
+.tw-td{
+    padding: 7px;
+}
+.tw-td-left {
+    flex: 0 0 100px;
+    width: 100px;
+    background: #fefecd;
+    border-radius: 5px;
+    font-weight: 600;
+}
+.tw-td-right{
+    flex: auto;
+}
+.tw-btns{
+    padding: 15px 100px;
+    display: flex;
+    justify-content: space-between;
+}
+.tw-btn{
+    flex: 0 0 45%;
+    width: 45%;
+    height: 60px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+.tw-btn-img{
+    height: 40px;
+    margin: 0 15px;
+}
+    .tw-btn-img img{
+        height: 100%;
+    }
+.tw-btn-info1{
+    font-size: 18px;
+    font-weight: 600;
+}
+.tw-btn-other {
+    background: #2887eb;
+    border: 1px solid #2887eb;
+    color: #fff;
+}
+
+
+.tw-bread {
+    width: 100%;
+    max-width: 960px;
+    margin: 15px auto;
+}
+.tw-bread-driver{
+    padding: 0 5px;
+}
+
+.tw-detail-wrapper {
+    width: 100%;
+    max-width: 960px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    padding: 15px 0;
+}
+.tw-detail-left{
+    flex: 0 0 680px;
+    width: 680px;
+}
+.tw-detail-right {
+    flex: 0 0 260px;
+    width: 260px;
+    background: #fff2a9;
+    padding: 10px;
+}
+
+.tw-work-title{
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+.tw-work-box {
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0,0,0,.2);
+    border: 1px solid #dcdada;
+    border-bottom: 8px solid #ffda4c;
+}
+.tw-work-box-title {
+    padding: 5px 10px;
+    background: #ffda4c;
+    font-size: 14px;
+    font-weight: 600;
+}
+.tw-work-other-info{
+    padding: 10px;
+}
+.tw-work-other-info p{
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+}
+.tw-work-distance{
+    padding: 0 10px;
+    margin-bottom: 10px;
+}
+.tw-work-details {
+    padding: 0 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+    .tw-work-details .tw-table{
+        flex: 0 0 380px;
+        width: 380px;
+    }
+.tw-work-imgs {
+    flex: 0 0 260px;
+    width: 260px;
+}
+.tw-work-big-img{
+    margin-bottom: 10px;
+}
+    .tw-work-big-img img {
+        border: 1px solid #ccc;
+        padding: 1px;
+    }
+    .tw-work-imgs-list {
+        display: flex;
+    }
+    .tw-work-imgs-list img {
+        width: 45px;
+        margin-right: 5px;
+        border: 1px solid #ccc;
+        padding: 1px;
+    }
+.tw-work-imgs-list .active {
+    border: 1px solid #ffda4c;
+}
+.tw-work-tags {
+    padding: 10px;
+}
+    .tw-work-tags::after{
+        content: '';
+        display: block;
+        clear: both;
+    }
+.tw-work-tag {
+    float: left;
+    margin-right: 0.5%;
+    margin-bottom: 5px;
+    width: 12%;
+    text-align: center;
+    white-space: nowrap;
+    padding: 4px;
+    border-radius: 4px;
+    border: 2px solid #ffda4c;
+    color: #d98f00;
+    font-size: 12px;
+}
+
+.tw-common-title {
+    height: 35px;
+    line-height: 35px;
+    padding: 0 10px;
+    border-bottom: 4px solid #ffcb00;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+    .tw-common-title .glyphicon {
+        color: #ffcb00;
+        margin-right: 10px;
+    }
+    .tw-common-title + .tw-table {
+        padding: 0 10px;
+    }
+.tw-table-title {
+    font-weight: 600;
+    margin-bottom: 7px;
+}
+
+.tw-table-list {
+    margin-bottom: 10px;
+}
+
+.tw-compare {
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.tw-compare-left, .tw-compare-right {
+    flex: 0 0 calc( (100% - 65px) / 2);
+    width: calc( (100% - 65px) / 2);
+}
+
+.tw-compare-left {
+    text-align: right;
+}
+
+.tw-compare-icon {
+    flex: 0 0 45px;
+    width: 45px;
+    margin: 0 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.tw-compare-item {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: #b2b2b2;
+}
+
+    .tw-compare-item.active {
+        width: 8px;
+        height: 8px;
+        background: #ff5550;
+    }
+
+
+.tw-other-work-title {
+    font-size: 16px;
+    font-weight: 600;
+    padding-bottom: 5px;
+    border-bottom: 5px solid #7eccff;
+    margin-bottom: 15px;
+    margin-top: 30px;
+}
+
+.tw-similar-work-box {
+    margin-bottom: 15px;
+    border: 1px solid #dcdada;
+    box-shadow: 0 0 5px rgba(0,0,0,.2);
+    border-radius: 5px;
+}
+
+.tw-similar-title {
+    height: 32px;
+    line-height: 32px;
+    padding: 0 10px;
+    background: #ffca00;
+}
+
+    .tw-similar-title a {
+        font-weight: 600;
+        color: #111;
+    }
+
+.tw-similar-main {
+    padding: 10px;
+}
+
+.tw-similar-top {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.tw-similar-top-title1 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #0170b5;
+}
+
+.tw-similar-top-title2 {
+    font-size: 12px;
+}
+
+.tw-similar-top-btn {
+    background: linear-gradient(to bottom, #fff, #f2eddb);
+    padding: 8px;
+    border: 1px solid #aaa;
+    border-radius: 5px;
+}
+
+    .tw-similar-top-btn span:last-child {
+        font-weight: 600;
+        color: #7eccff;
+        padding-left: 15px;
+    }
+
+/*.tw-similar-main .tw-table {
+    padding: 0;
+}*/
+
+.tw-similar-footer {
+    margin-top: 10px;
+    height: 75px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fef8b5;
+    padding: 0 10px;
+}
+
+.tw-similar-footer-btn {
+    background: linear-gradient(to bottom, #fff, #f2eddb);
+    padding: 12px;
+    padding-right: 30px;
+    border: 1px solid #aaa;
+    border-radius: 5px;
+}
+
+    .tw-similar-footer-btn span:first-child {
+        margin-right: 30px;
+    }
+
+    .tw-similar-footer-btn span:last-child {
+        font-size: 16px;
+        font-weight: 600;
+    }
+
+
+
+@media (max-width: 959px) {
+    .tw-detail-wrapper {
+        width: 100%;
+    }
+
+    .tw-detail-right {
+        display: none;
+    }
+
+    .tw-detail-left {
+        flex: 0 0 100%;
+        width: 100%;
+    }
+    .tw-work-imgs, .tw-work-details .tw-table {
+        flex: 0 0 100%;
+        width: 100%;
+    }
+
+    .tw-work-imgs {
+        margin-bottom: 10px;
+    }
+    .tw-work-tag {
+        width: 19%;
+        margin-right: 1%;
+    }
+    .tw-btns {
+        padding: 15px 30px;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+    .tw-btn {
+        flex: 0 0 100%;
+        width: 100%;
+        height: 60px;
+        border-radius: 10px;
+        border: 1px solid #ccc;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+    }
+    .tw-btn:first-child{
+        margin-bottom: 10px;
+    }
+    .tw-similar-footer {
+        flex-wrap: wrap;
+        height: auto;
+        padding: 10px;
+    }
+
+    .tw-similar-footer-btn {
+        flex: 0 0 100%;
+        width: 100%;
+    }
+}
+
+.tw-right-common-title{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+.tw-right-common-title .title{
+    margin-right: auto;
+    font-size: 18px;
+    font-weight: 600;
+    margin-left: 5px;
+}
+.tw-submit-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+.tw-submit-box {
+    flex: 0 0 calc( (100% - 10px) / 2);
+    width: calc( (100% - 10px) / 2);
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background: #fff;
+}
+.tw-right-search-box {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background: #fff;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+    .tw-right-search-box .glyphicon{
+        color: aqua;
+    }
+.tw-right-list{
+    margin-bottom: 30px;
+}
+.tw-right-li {
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background: #fff;
+}
+.tw-list-title{
+    font-size: 14px;
+}
+.tw-list-detail{
+    margin: 5px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+.tw-list-detail img{
+    flex: 0 0 40%;
+    width: 40%;
+    margin-right: 5px;
+}
+.tw-list-name{
+    flex: auto;
+}
+.tw-list-info{
+    font-weight: normal;
+}

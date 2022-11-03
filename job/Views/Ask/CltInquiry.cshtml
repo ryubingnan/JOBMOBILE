@@ -1,0 +1,201 @@
+﻿@{
+    ViewData["Title"] = "お問合わせ";
+    Layout = "_JobDetailLayout";
+}
+<!DOCTYPE html>
+<html lang="ja">
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# website: http://ogp.me/ns/website#">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="リクルートダイレクトスカウト(RECRUIT DIRECT SCOUT)は、リクルートが運営する中途採用向けスカウトサービスです。運用工数を抑えて、独自のデータベースから即戦力人材にアプローチいただけます。">
+    <meta property="og:url" content="">
+    <meta property="og:site_name" content="リクルートダイレクトスカウト">
+    <meta property="og:title" content="リクルートダイレクトスカウト">
+    <meta property="og:type" content="website">
+    <meta property="og:description" content="リクルートダイレクトスカウト(RECRUIT DIRECT SCOUT)は、リクルートが運営する中途採用向けスカウトサービスです。運用工数を抑えて、独自のデータベースから即戦力人材にアプローチいただけます。">
+    <meta property="og:image" content="/clt/img/ogp.png">
+    <!-- Google Tag Manager -->
+    <script>
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-TJSN6L');</script>
+    <!-- End Google Tag Manager -->
+    <link rel="stylesheet" href="/clt/css/style.css">
+    <link rel="icon" href="/clt/img/favicon.ico">
+    <link rel="apple-touch-icon" href="/clt/img/apple_touch_icon.png">
+    <script type="text/javascript" src="/clt/js/jquery_3.6.0.min.js"></script>
+    <script type="text/javascript" src="/clt/js/lp_form.js"></script>
+    <script src="https://directscout.recruit.co.jp/js/site_catalyst/customer/s_code.js"></script>
+    <script src="https://directscout.recruit.co.jp/js/site_catalyst/customer/code_to_paste.js"></script>
+    <title>リクルートダイレクトスカウトお問い合わせ</title>
+</head>
+
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TJSN6L"
+                height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <main class="main">
+        @*<section class="mv">
+                <div class="mv__wrapper">
+                    <div class="mv__textWrapper">
+                        <h2 class="mv__title">リクルートダイレクトスカウト<br class="sp">お問い合わせ</h2>
+                        <p class="mv__text">
+                            ご興味をお持ちいただきまして、<br class="sp">ありがとうございます。
+                            <br>以下よりお問い合わせください。
+                        </p>
+                        <p class="mv__text_tel">
+                            電話でのお問い合わせも承ります。<br>050-5444-2409
+                        </p>
+                    </div><small class="mv__annotation">（受付時間：平日 9:00-18:00　※祝日を除く）</small>
+                </div>
+            </section>*@
+
+        <section class="form">
+            <form id="theform" asp-area="" asp-controller="Company" asp-action="AddCompany" enctype="multipart/form-data" method="post" name="lp-inquiry-form">
+               
+                    <input type="hidden" name="inflow_route" value="" />
+                    <div class="form-item">
+                        <label class="form-item-label">名前<span class="required">必須</span></label>
+                        <div class="name">
+                            <label class="s">姓</label>
+                            <div class="form-item-input">
+                                <input type="text"
+                                       name="Surname"
+                                       autocomplete="family-name"
+                                       class="input-s"
+                                       placeholder="山田" />
+                            </div>
+                            <label class="m">名</label>
+                            <div class="form-item-input">
+                                <input type="text"
+                                       name="Name"
+                                       autocomplete="given-name"
+                                       class="input-m"
+                                       placeholder="太郎" />
+                            </div>
+                        </div>
+                        <p class="error name_1_error">入力してください</p>
+                    </div>
+
+                    <div class="form-item">
+                        <label class="form-item-label">名前（フリガナ）<span class="required">必須</span></label>
+                        <div class="name">
+                            <label class="s">セイ</label>
+                            <div class="form-item-input">
+                                <input type="text"
+                                       name="KatakanaSurname"
+                                       autocomplete="family-name"
+                                       class="input-s"
+                                       placeholder="ヤマダ" />
+                            </div>
+                            <label class="m">メイ</label>
+                            <div class="form-item-input">
+                                <input type="text"
+                                       name="KatakanaName"
+                                       autocomplete="given-name"
+                                       class="input-m"
+                                       placeholder="タロウ" />
+                            </div>
+                        </div>
+                        <p class="error name_2_error">全角カタカナで入力してください</p>
+                    </div>
+
+                    <div class="form-item">
+                        <label class="form-item-label">メールアドレス<span class="required">必須</span></label>
+                        <div class="email">
+                            <p>
+                                <input type="email" name="Email" autocomplete="email" class="form-control" placeholder="example@mail.com" />
+                            </p>
+                        </div>
+                        <p class="error email_1_error">有効なメールアドレスを入力してください</p>
+                    </div>
+
+                    <div class="form-item">
+                        <label class="form-item-label confirmation">確認のため再度ご入力ください</label>
+                        <div class="email confirmation">
+                            <p>
+                                <input type="email" name="EmailConfirmation" autocomplete="email" class="form-control" placeholder="example@mail.com" />
+                            </p>
+                        </div>
+                        <p class="annotation">
+                            フリーアドレスではなく会社用のメールアドレスをご記載ください。<br>
+                            Gmailなどのフリーアドレスの場合はご案内をお断りさせていただくことがあることをご了承ください。
+                        </p>
+                        <p class="error email_2_error">メールアドレスが一致しません</p>
+                    </div>
+
+                    <div class="form-item">
+                        <label class="form-item-label">電話番号<span class="required">必須</span></label>
+                        <div class="tel">
+                            <p>
+                                <input type="tel" name="Tel" autocomplete="tel" class="form-control" placeholder="09012345678" />
+                            </p>
+                        </div>
+                        <p class="error tel_error">数字を入力してください</p>
+                    </div>
+
+                    <div class="form-item">
+                        <label class="form-item-label">会社名<span class="required">必須</span></label></label>
+                        <div class="company">
+                            <p>
+                                <input type="text"
+                                       name="CompanyName"
+                                       autocomplete="company"
+                                       autocorrect="off"
+                                       autocapitalize="off"
+                                       class="form-control"
+                                       placeholder="会社名" />
+                            </p>
+                        </div>
+                        <p class="error company_error">入力してください</p>
+                    </div>
+
+                    <div class="form-item">
+                        <label class="form-item-label">会社ホームページURL<span class="required">必須</span></label></label>
+                        <div class="company_url">
+                            <p>
+                                <input type="text"
+                                       name="CompanyUrl"
+                                       autocomplete="CompanyUrl"
+                                       autocorrect="off"
+                                       autocapitalize="off"
+                                       class="form-control"
+                                       placeholder="https://" />
+                            </p>
+                        </div>
+                        <p class="error company_url_error">入力してください</p>
+                    </div>
+
+                    <div class="send">
+                        <p>
+                            <span>
+                                <a href="https://clt.directscout.recruit.co.jp/doc/contents/pages/clt/clt_privacy_policy.html" target="_blank">プライバシーポリシー</a>
+                            </span>をお読みの上、同意して送信してください。
+                        </p>
+                        <button type="submit" class="btn btn-primary">送信</button>
+                    </div>
+                </form>
+
+        </section>
+
+
+    </main>
+    <footer class="footer">
+        <div class="footer__upper"><a class="footer__scrollTopButton" href="#" data-selector="toTop"><img class="footer__scrollTopButtonImg pc--inline" src="/clt/img/scroll_top_button.png" alt="トップへ戻るボタン"><img class="footer__scrollTopButtonImg sp--inline" src="/clt/img/scroll_top_button.png" alt="トップへ戻るボタン"></a><a class="footer__serviceLogo" href="https://directscout.recruit.co.jp/" target="_blank" rel="noopener noreferrer"><img class="footer__serviceLogoImg pc" src="/clt/img/logo_footer_2x.png" alt="リクルートダイレクトスカウト PRODUCED BY RECRUIT"><img class="footer__serviceLogoImg sp" src="/clt/img/logo_footer_2x.png" alt="リクルートダイレクトスカウト PRODUCED BY RECRUIT"></a><small class="footer__annotation">※「ダイレクトスカウト」は<br class="sp">株式会社リクルートの登録商標です。</small></div>
+        <div class="footer__lower">
+            <a class="footer__corporateLogo" href="https://www.recruit.co.jp/" target="_blank" rel="noopener noreferrer">
+                <img class="footer__corporateLogoImg pc" src="/clt/img/recruit_logo.png" alt="Recruit"><img class="footer__corporateLogoImg sp" src="/clt/img/recruit_logo.png" alt="Recruit">
+                <p class="footer__copyright">(C) Recruit Staffing Co., Ltd.</p>
+            </a>
+        </div>
+    </footer>
+
+</body>
+</html>

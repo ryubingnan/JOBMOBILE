@@ -1,0 +1,1455 @@
+﻿@{
+    ViewData["Title"] = "掲載一覧";
+}
+@using job.Web.Models.System
+@model JobViewModel
+
+<link rel="stylesheet" type="text/css" href="~/css/jobSearchList.css" />
+<link rel="stylesheet" type="text/css" href="~/css/common_pc.css" />
+
+@*模态框1*@
+<div class="modal fade" id="Industry" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width:1200px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" style="float:left;" fill="currentColor" class="bi bi-globe2" viewBox="0 0 16 16">
+                        <path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm7.5-6.923c-.67.204-1.335.82-1.887 1.855-.143.268-.276.56-.395.872.705.157 1.472.257 2.282.287V1.077zM4.249 3.539c.142-.384.304-.744.481-1.078a6.7 6.7 0 0 1 .597-.933A7.01 7.01 0 0 0 3.051 3.05c.362.184.763.349 1.198.49zM3.509 7.5c.036-1.07.188-2.087.436-3.008a9.124 9.124 0 0 1-1.565-.667A6.964 6.964 0 0 0 1.018 7.5h2.49zm1.4-2.741a12.344 12.344 0 0 0-.4 2.741H7.5V5.091c-.91-.03-1.783-.145-2.591-.332zM8.5 5.09V7.5h2.99a12.342 12.342 0 0 0-.399-2.741c-.808.187-1.681.301-2.591.332zM4.51 8.5c.035.987.176 1.914.399 2.741A13.612 13.612 0 0 1 7.5 10.91V8.5H4.51zm3.99 0v2.409c.91.03 1.783.145 2.591.332.223-.827.364-1.754.4-2.741H8.5zm-3.282 3.696c.12.312.252.604.395.872.552 1.035 1.218 1.65 1.887 1.855V11.91c-.81.03-1.577.13-2.282.287zm.11 2.276a6.696 6.696 0 0 1-.598-.933 8.853 8.853 0 0 1-.481-1.079 8.38 8.38 0 0 0-1.198.49 7.01 7.01 0 0 0 2.276 1.522zm-1.383-2.964A13.36 13.36 0 0 1 3.508 8.5h-2.49a6.963 6.963 0 0 0 1.362 3.675c.47-.258.995-.482 1.565-.667zm6.728 2.964a7.009 7.009 0 0 0 2.275-1.521 8.376 8.376 0 0 0-1.197-.49 8.853 8.853 0 0 1-.481 1.078 6.688 6.688 0 0 1-.597.933zM8.5 11.909v3.014c.67-.204 1.335-.82 1.887-1.855.143-.268.276-.56.395-.872A12.63 12.63 0 0 0 8.5 11.91zm3.555-.401c.57.185 1.095.409 1.565.667A6.963 6.963 0 0 0 14.982 8.5h-2.49a13.36 13.36 0 0 1-.437 3.008zM14.982 7.5a6.963 6.963 0 0 0-1.362-3.675c-.47.258-.995.482-1.565.667.248.92.4 1.938.437 3.008h2.49zM11.27 2.461c.177.334.339.694.482 1.078a8.368 8.368 0 0 0 1.196-.49 7.01 7.01 0 0 0-2.275-1.52c.218.283.418.597.597.932zm-.488 1.343a7.765 7.765 0 0 0-.395-.872C9.835 1.897 9.17 1.282 8.5 1.077V4.09c.81-.03 1.577-.13 2.282-.287z" />
+                    </svg> 業種
+                </h4>
+            </div>
+            <div class="modal-body modalTable">
+                <table style="border-bottom: 1px solid #e0e0e0;margin-bottom:15px;">
+                    <tr><td class="fontWeightBold">IT・通信</td><td></td><td></td><td></td><td></td></tr>
+                    <tr>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" v-model="contentCheckboxs" value="システムインテグレータ"> システムインテグレータ
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" v-model="contentCheckboxs" value="ハードウェア・ソフトウェア"> ハードウェア・ソフトウェア
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" v-model="contentCheckboxs" value="ITアウトソーシング"> ITアウトソーシング
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" v-model="contentCheckboxs" value="ITコンサルティング"> ITコンサルティング
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" v-model="contentCheckboxs" value="通信キャリア"> 通信キャリア
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" v-model="contentCheckboxs" value="ISP"> ISP
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" v-model="contentCheckboxs" value="データセンター"> データセンター
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" v-model="contentCheckboxs" value="その他"> その他
+                            </div>
+                        </td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+                <table style="border-bottom: 1px solid #e0e0e0;margin-bottom:15px;">
+                    <tr><td class="fontWeightBold">商社</td><td></td><td></td><td></td><td></td></tr>
+                    <tr>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" v-model="contentCheckboxs" value="家電"> 家電
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" v-model="contentCheckboxs" value="電子部品"> 電子部品
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" v-model="contentCheckboxs" value="自動車部品"> 自動車部品
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" v-model="contentCheckboxs" value="日用品"> 日用品
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" v-model="contentCheckboxs" value="その他"> その他
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <table style="border-bottom: 1px solid #e0e0e0;margin-bottom:15px;">
+                    <tr><td class="fontWeightBold">メーカー</td><td></td><td></td><td></td><td></td></tr>
+                    <tr>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" v-model="contentCheckboxs" value="化粧品"> 化粧品
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" v-model="contentCheckboxs" value="石油化学"> 石油化学
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" v-model="contentCheckboxs" value="家具"> 家具
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" v-model="contentCheckboxs" value="スポーツ"> スポーツ
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" v-model="contentCheckboxs" value="ファッション"> ファッション
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" v-model="contentCheckboxs" value="ベビー用品"> ベビー用品
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" v-model="contentCheckboxs" value="食品・飲料"> 食品・飲料
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" v-model="contentCheckboxs" value="金属"> 金属
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" v-model="contentCheckboxs" value="トイレタリー"> トイレタリー
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" v-model="contentCheckboxs" value="その他"> その他
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <table style="border-bottom: 1px solid #e0e0e0;margin-bottom:15px;">
+                    <tr><td class="fontWeightBold">金融</td><td></td><td></td><td></td><td></td></tr>
+                    <tr>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" v-model="contentCheckboxs" value="都市銀行"> 都市銀行
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" v-model="contentCheckboxs" value="地方銀行"> 地方銀行
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" v-model="contentCheckboxs" value="信託銀行"> 信託銀行
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" v-model="contentCheckboxs" value="信用金庫"> 信用金庫
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" v-model="contentCheckboxs" value="証券会社"> 証券会社
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" v-model="contentCheckboxs" value="生命保険"> 生命保険
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" v-model="contentCheckboxs" value="損害保険"> 損害保険
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" v-model="contentCheckboxs" value="保険代理店"> 保険代理店
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" v-model="contentCheckboxs" value="住宅ローン"> 住宅ローン
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" v-model="contentCheckboxs" value="その他"> その他
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <table style="border-bottom: 1px solid #e0e0e0;margin-bottom:15px;">
+                    <tr><td class="fontWeightBold">教育</td><td></td><td></td><td></td><td></td></tr>
+                    <tr>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" v-model="contentCheckboxs" value="学習塾"> 学習塾
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" v-model="contentCheckboxs" value="予備校"> 予備校
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" v-model="contentCheckboxs" value="専門学校"> 専門学校
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" v-model="contentCheckboxs" value="各種スクール"> 各種スクール
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" v-model="contentCheckboxs" value="その他"> その他
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <table>
+                    <tr><td class="fontWeightBold">旅行・宿泊</td><td></td><td></td><td></td><td></td></tr>
+                    <tr>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" v-model="contentCheckboxs" value="旅行社"> 旅行社
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" v-model="contentCheckboxs" value="旅行代理店"> 旅行代理店
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" v-model="contentCheckboxs" value="ホテル・旅館"> ホテル・旅館
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" v-model="contentCheckboxs" value="レジャー"> レジャー
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" v-model="contentCheckboxs" value="その他"> その他
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">
+                    閉じる
+                </button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" @@click="handleGetContents">
+                    この条件で検索する
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div>
+</div>
+
+@*模态框2*@
+<div class="modal fade" id="Occupation" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width:1200px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" style="float:left;" fill="currentColor" class="bi bi-globe2" viewBox="0 0 16 16">
+                        <path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm7.5-6.923c-.67.204-1.335.82-1.887 1.855-.143.268-.276.56-.395.872.705.157 1.472.257 2.282.287V1.077zM4.249 3.539c.142-.384.304-.744.481-1.078a6.7 6.7 0 0 1 .597-.933A7.01 7.01 0 0 0 3.051 3.05c.362.184.763.349 1.198.49zM3.509 7.5c.036-1.07.188-2.087.436-3.008a9.124 9.124 0 0 1-1.565-.667A6.964 6.964 0 0 0 1.018 7.5h2.49zm1.4-2.741a12.344 12.344 0 0 0-.4 2.741H7.5V5.091c-.91-.03-1.783-.145-2.591-.332zM8.5 5.09V7.5h2.99a12.342 12.342 0 0 0-.399-2.741c-.808.187-1.681.301-2.591.332zM4.51 8.5c.035.987.176 1.914.399 2.741A13.612 13.612 0 0 1 7.5 10.91V8.5H4.51zm3.99 0v2.409c.91.03 1.783.145 2.591.332.223-.827.364-1.754.4-2.741H8.5zm-3.282 3.696c.12.312.252.604.395.872.552 1.035 1.218 1.65 1.887 1.855V11.91c-.81.03-1.577.13-2.282.287zm.11 2.276a6.696 6.696 0 0 1-.598-.933 8.853 8.853 0 0 1-.481-1.079 8.38 8.38 0 0 0-1.198.49 7.01 7.01 0 0 0 2.276 1.522zm-1.383-2.964A13.36 13.36 0 0 1 3.508 8.5h-2.49a6.963 6.963 0 0 0 1.362 3.675c.47-.258.995-.482 1.565-.667zm6.728 2.964a7.009 7.009 0 0 0 2.275-1.521 8.376 8.376 0 0 0-1.197-.49 8.853 8.853 0 0 1-.481 1.078 6.688 6.688 0 0 1-.597.933zM8.5 11.909v3.014c.67-.204 1.335-.82 1.887-1.855.143-.268.276-.56.395-.872A12.63 12.63 0 0 0 8.5 11.91zm3.555-.401c.57.185 1.095.409 1.565.667A6.963 6.963 0 0 0 14.982 8.5h-2.49a13.36 13.36 0 0 1-.437 3.008zM14.982 7.5a6.963 6.963 0 0 0-1.362-3.675c-.47.258-.995.482-1.565.667.248.92.4 1.938.437 3.008h2.49zM11.27 2.461c.177.334.339.694.482 1.078a8.368 8.368 0 0 0 1.196-.49 7.01 7.01 0 0 0-2.275-1.52c.218.283.418.597.597.932zm-.488 1.343a7.765 7.765 0 0 0-.395-.872C9.835 1.897 9.17 1.282 8.5 1.077V4.09c.81-.03 1.577-.13 2.282-.287z" />
+                    </svg> 職種
+                </h4>
+            </div>
+            <div class="modal-body modalTable">
+                <table style="border-bottom: 1px solid #e0e0e0;margin-bottom:15px;">
+                    <tr><td class="fontWeightBold">IT・通信</td><td></td><td></td><td></td><td></td></tr>
+                    <tr>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> システムインテグレータ
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> ハードウェア・ソフトウェア
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> ITアウトソーシング
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> ITコンサルティング
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 通信キャリア
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> ISP
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> データセンター
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> その他
+                            </div>
+                        </td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+                <table style="border-bottom: 1px solid #e0e0e0;margin-bottom:15px;">
+                    <tr><td class="fontWeightBold">商社</td><td></td><td></td><td></td><td></td></tr>
+                    <tr>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 家電
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 電子部品
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 自動車部品
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 日用品
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> その他
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <table style="border-bottom: 1px solid #e0e0e0;margin-bottom:15px;">
+                    <tr><td class="fontWeightBold">メーカー</td><td></td><td></td><td></td><td></td></tr>
+                    <tr>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 化粧品
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 石油化学
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 家具
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> スポーツ
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> ファッション
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> ベビー用品
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 食品・飲料
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 金属
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> トイレタリー
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> その他
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <table style="border-bottom: 1px solid #e0e0e0;margin-bottom:15px;">
+                    <tr><td class="fontWeightBold">金融</td><td></td><td></td><td></td><td></td></tr>
+                    <tr>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 都市銀行
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 地方銀行
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 信託銀行
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 信用金庫
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 証券会社
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 生命保険
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 損害保険
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 保険代理店
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 住宅ローン
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> その他
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <table style="border-bottom: 1px solid #e0e0e0;margin-bottom:15px;">
+                    <tr><td class="fontWeightBold">教育</td><td></td><td></td><td></td><td></td></tr>
+                    <tr>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 学習塾
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 予備校
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 専門学校
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 各種スクール
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> その他
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <table>
+                    <tr><td class="fontWeightBold">旅行・宿泊</td><td></td><td></td><td></td><td></td></tr>
+                    <tr>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 旅行社
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 旅行代理店
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> ホテル・旅館
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> レジャー
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> その他
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">
+                    閉じる
+                </button>
+                <button type="button" class="btn btn-primary">
+                    この条件で検索する
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div>
+</div>
+
+@*模态框3*@
+<div class="modal fade" id="Area" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width:1200px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" style="float:left;" fill="currentColor" class="bi bi-globe2" viewBox="0 0 16 16">
+                        <path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm7.5-6.923c-.67.204-1.335.82-1.887 1.855-.143.268-.276.56-.395.872.705.157 1.472.257 2.282.287V1.077zM4.249 3.539c.142-.384.304-.744.481-1.078a6.7 6.7 0 0 1 .597-.933A7.01 7.01 0 0 0 3.051 3.05c.362.184.763.349 1.198.49zM3.509 7.5c.036-1.07.188-2.087.436-3.008a9.124 9.124 0 0 1-1.565-.667A6.964 6.964 0 0 0 1.018 7.5h2.49zm1.4-2.741a12.344 12.344 0 0 0-.4 2.741H7.5V5.091c-.91-.03-1.783-.145-2.591-.332zM8.5 5.09V7.5h2.99a12.342 12.342 0 0 0-.399-2.741c-.808.187-1.681.301-2.591.332zM4.51 8.5c.035.987.176 1.914.399 2.741A13.612 13.612 0 0 1 7.5 10.91V8.5H4.51zm3.99 0v2.409c.91.03 1.783.145 2.591.332.223-.827.364-1.754.4-2.741H8.5zm-3.282 3.696c.12.312.252.604.395.872.552 1.035 1.218 1.65 1.887 1.855V11.91c-.81.03-1.577.13-2.282.287zm.11 2.276a6.696 6.696 0 0 1-.598-.933 8.853 8.853 0 0 1-.481-1.079 8.38 8.38 0 0 0-1.198.49 7.01 7.01 0 0 0 2.276 1.522zm-1.383-2.964A13.36 13.36 0 0 1 3.508 8.5h-2.49a6.963 6.963 0 0 0 1.362 3.675c.47-.258.995-.482 1.565-.667zm6.728 2.964a7.009 7.009 0 0 0 2.275-1.521 8.376 8.376 0 0 0-1.197-.49 8.853 8.853 0 0 1-.481 1.078 6.688 6.688 0 0 1-.597.933zM8.5 11.909v3.014c.67-.204 1.335-.82 1.887-1.855.143-.268.276-.56.395-.872A12.63 12.63 0 0 0 8.5 11.91zm3.555-.401c.57.185 1.095.409 1.565.667A6.963 6.963 0 0 0 14.982 8.5h-2.49a13.36 13.36 0 0 1-.437 3.008zM14.982 7.5a6.963 6.963 0 0 0-1.362-3.675c-.47.258-.995.482-1.565.667.248.92.4 1.938.437 3.008h2.49zM11.27 2.461c.177.334.339.694.482 1.078a8.368 8.368 0 0 0 1.196-.49 7.01 7.01 0 0 0-2.275-1.52c.218.283.418.597.597.932zm-.488 1.343a7.765 7.765 0 0 0-.395-.872C9.835 1.897 9.17 1.282 8.5 1.077V4.09c.81-.03 1.577-.13 2.282-.287z" />
+                    </svg> 勤務地
+                </h4>
+            </div>
+            <div class="modal-body modalTable">
+                <table style="border-bottom: 1px solid #e0e0e0;margin-bottom:15px;">
+                    <tr><td class="fontWeightBold">北海道</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 北海道
+                            </div>
+                        </td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+                <table style="border-bottom: 1px solid #e0e0e0;margin-bottom:15px;">
+                    <tr><td class="fontWeightBold">東北</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 青森
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 岩手
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 宮城
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 秋田
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 山形
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 福島
+                            </div>
+                        </td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+                <table style="border-bottom: 1px solid #e0e0e0;margin-bottom:15px;">
+                    <tr><td class="fontWeightBold">関東</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 茨城
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 栃木
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 群馬
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 埼玉
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 千葉
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 東京
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 神奈川
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 山梨
+                            </div>
+                        </td>
+                        <td></td>
+                    </tr>
+                </table>
+                <table style="border-bottom: 1px solid #e0e0e0;margin-bottom:15px;">
+                    <tr><td class="fontWeightBold">東海</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 岐阜
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 静岡
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 愛知
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 三重
+                            </div>
+                        </td>
+                        <td>
+                        </td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+                <table style="border-bottom: 1px solid #e0e0e0;margin-bottom:15px;">
+                    <tr><td class="fontWeightBold">北信越</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 新潟
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 富山
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 石川
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 福井
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 長野
+                            </div>
+                        </td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+                <table style="border-bottom: 1px solid #e0e0e0;margin-bottom:15px;">
+                    <tr><td class="fontWeightBold">関西</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 滋賀
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 京都
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 大阪
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 兵庫
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 奈良
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 和歌山
+                            </div>
+                        </td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+                <table style="border-bottom: 1px solid #e0e0e0;margin-bottom:15px;">
+                    <tr><td class="fontWeightBold">中国・四国</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 鳥取
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 島根
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 岡山
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 広島
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 山口
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 徳島
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 香川
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 愛媛
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 高知
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <table>
+                    <tr><td class="fontWeightBold">九州・沖縄</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 福岡
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 佐賀
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 長崎
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 熊本
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 大分
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 宮崎
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 鹿児島
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 沖縄
+                            </div>
+                        </td>
+                        <td>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">
+                    閉じる
+                </button>
+                <button type="button" class="btn btn-primary">
+                    この条件で検索する
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div>
+</div>
+
+@*模态框4*@
+<div class="modal fade" id="Apply" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width:1200px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" style="float:left;" fill="currentColor" class="bi bi-globe2" viewBox="0 0 16 16">
+                        <path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm7.5-6.923c-.67.204-1.335.82-1.887 1.855-.143.268-.276.56-.395.872.705.157 1.472.257 2.282.287V1.077zM4.249 3.539c.142-.384.304-.744.481-1.078a6.7 6.7 0 0 1 .597-.933A7.01 7.01 0 0 0 3.051 3.05c.362.184.763.349 1.198.49zM3.509 7.5c.036-1.07.188-2.087.436-3.008a9.124 9.124 0 0 1-1.565-.667A6.964 6.964 0 0 0 1.018 7.5h2.49zm1.4-2.741a12.344 12.344 0 0 0-.4 2.741H7.5V5.091c-.91-.03-1.783-.145-2.591-.332zM8.5 5.09V7.5h2.99a12.342 12.342 0 0 0-.399-2.741c-.808.187-1.681.301-2.591.332zM4.51 8.5c.035.987.176 1.914.399 2.741A13.612 13.612 0 0 1 7.5 10.91V8.5H4.51zm3.99 0v2.409c.91.03 1.783.145 2.591.332.223-.827.364-1.754.4-2.741H8.5zm-3.282 3.696c.12.312.252.604.395.872.552 1.035 1.218 1.65 1.887 1.855V11.91c-.81.03-1.577.13-2.282.287zm.11 2.276a6.696 6.696 0 0 1-.598-.933 8.853 8.853 0 0 1-.481-1.079 8.38 8.38 0 0 0-1.198.49 7.01 7.01 0 0 0 2.276 1.522zm-1.383-2.964A13.36 13.36 0 0 1 3.508 8.5h-2.49a6.963 6.963 0 0 0 1.362 3.675c.47-.258.995-.482 1.565-.667zm6.728 2.964a7.009 7.009 0 0 0 2.275-1.521 8.376 8.376 0 0 0-1.197-.49 8.853 8.853 0 0 1-.481 1.078 6.688 6.688 0 0 1-.597.933zM8.5 11.909v3.014c.67-.204 1.335-.82 1.887-1.855.143-.268.276-.56.395-.872A12.63 12.63 0 0 0 8.5 11.91zm3.555-.401c.57.185 1.095.409 1.565.667A6.963 6.963 0 0 0 14.982 8.5h-2.49a13.36 13.36 0 0 1-.437 3.008zM14.982 7.5a6.963 6.963 0 0 0-1.362-3.675c-.47.258-.995.482-1.565.667.248.92.4 1.938.437 3.008h2.49zM11.27 2.461c.177.334.339.694.482 1.078a8.368 8.368 0 0 0 1.196-.49 7.01 7.01 0 0 0-2.275-1.52c.218.283.418.597.597.932zm-.488 1.343a7.765 7.765 0 0 0-.395-.872C9.835 1.897 9.17 1.282 8.5 1.077V4.09c.81-.03 1.577-.13 2.282-.287z" />
+                    </svg> 勤務地
+                </h4>
+            </div>
+            <div class="modal-body modalTable">
+                <table style="border-bottom: 1px solid #e0e0e0;margin-bottom:15px;">
+                    <tr><td class="fontWeightBold">北海道</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 北海道
+                            </div>
+                        </td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+                <table style="border-bottom: 1px solid #e0e0e0;margin-bottom:15px;">
+                    <tr><td class="fontWeightBold">東北</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 青森
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 岩手
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 宮城
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 秋田
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 山形
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 福島
+                            </div>
+                        </td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+                <table style="border-bottom: 1px solid #e0e0e0;margin-bottom:15px;">
+                    <tr><td class="fontWeightBold">関東</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 茨城
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 栃木
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 群馬
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 埼玉
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 千葉
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 東京
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 神奈川
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 山梨
+                            </div>
+                        </td>
+                        <td></td>
+                    </tr>
+                </table>
+                <table style="border-bottom: 1px solid #e0e0e0;margin-bottom:15px;">
+                    <tr><td class="fontWeightBold">東海</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 岐阜
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 静岡
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 愛知
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 三重
+                            </div>
+                        </td>
+                        <td>
+                        </td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+                <table style="border-bottom: 1px solid #e0e0e0;margin-bottom:15px;">
+                    <tr><td class="fontWeightBold">北信越</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 新潟
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 富山
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 石川
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 福井
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 長野
+                            </div>
+                        </td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+                <table style="border-bottom: 1px solid #e0e0e0;margin-bottom:15px;">
+                    <tr><td class="fontWeightBold">関西</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 滋賀
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 京都
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 大阪
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 兵庫
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 奈良
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 和歌山
+                            </div>
+                        </td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+                <table style="border-bottom: 1px solid #e0e0e0;margin-bottom:15px;">
+                    <tr><td class="fontWeightBold">中国・四国</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 鳥取
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 島根
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 岡山
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 広島
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 山口
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 徳島
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 香川
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 愛媛
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 高知
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <table>
+                    <tr><td class="fontWeightBold">九州・沖縄</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 福岡
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 佐賀
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 長崎
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 熊本
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 大分
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 宮崎
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 鹿児島
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" value=""> 沖縄
+                            </div>
+                        </td>
+                        <td>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">
+                    閉じる
+                </button>
+                <button type="button" class="btn btn-primary">
+                    この条件で検索する
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div>
+</div>
+
+@*招聘信息*@
+<div class="jobList">
+    @*小导航*@
+    <div class="navigationSmall">
+        <ul>
+            <li>
+                <a href="/">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" style="float:left;" fill="currentColor" class="bi bi-house-heart-fill" viewBox="0 0 16 16">
+                        <path d="M7.293 1.5a1 1 0 0 1 1.414 0L11 3.793V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v3.293l2.354 2.353a.5.5 0 0 1-.708.707L8 2.207 1.354 8.853a.5.5 0 1 1-.708-.707L7.293 1.5Z" />
+                        <path d="m14 9.293-6-6-6 6V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V9.293Zm-6-.811c1.664-1.673 5.825 1.254 0 5.018-5.825-3.764-1.664-6.691 0-5.018Z" />
+                    </svg><span>トップ</span>
+                </a>
+            </li>
+            <li class="active">/募集一覧</li>
+        </ul>
+    </div>
+
+    @*左边界*@
+    <div class="jobLeftList centerStyle layout layoutList02" v-for="(job, i) in jobs">
+        <div class="jobleftListBox1">
+            <h2>
+                <a>
+                    <span>{{job.title}}/</span>
+                    <span> {{job.category}}</span>
+                    <span class="status icoSts02">NEW</span>
+                    <span class="status icoSts04">締切間近</span>
+                </a>
+            </h2>
+        </div>
+        <div style="height:360px">
+            <div class="jobleftListBox2">
+                <table>
+                    <tr>
+                        <td>
+                            <svg width="18px" height="18px" style="float:left;" viewBox="0 0 16 16" class="bi bi-chat-square-text" fill="currentColor"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                      d="M8 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z" />
+                            </svg>仕事内容
+                        </td>
+                        <td>{{showEllipsis(job.content)}}</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <svg width="18px" height="18px" style="float:left;" viewBox="0 0 16 16" class="bi bi-chat-square-text" fill="currentColor"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                      d="M8 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z" />
+                            </svg>対象
+                        </td>
+                        <td>{{job.hourlypay}}</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <svg width="18px" height="18px" style="float:left;" viewBox="0 0 16 16" class="bi bi-chat-square-text" fill="currentColor"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                      d="M8 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z" />
+                            </svg>勤務地
+                        </td>
+                        <td>{{job.workplace}}</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <svg width="18px" height="18px" style="float:left;" viewBox="0 0 16 16" class="bi bi-chat-square-text" fill="currentColor"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                      d="M8 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z" />
+                            </svg>給与
+                        </td>
+                        <td>{{job.carfare}}</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <svg width="18px" height="18px" style="float:left;" viewBox="0 0 16 16" class="bi bi-chat-square-text" fill="currentColor"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                      d="M8 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z" />
+                            </svg>事業概要
+                        </td>
+                        <td>{{job.treatments}}</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="jobleftListBox3">
+                <img class="lazy" v-bind:src="job.img1" data-src="{{job.Img1}}" width="360" alt="">
+            </div>
+        </div>
+        <div class="jobleftListBox4">
+            <table>
+                <tr>
+                    <td style="text-align:right;"><a :href="'/Job/JobDetail?id=' + job.id" target="_blank" style="color:#ffffff;" class="btn btn-primary btn-lg">求人詳細を見る</a></td>
+                    <td style="text-align:left;"><button type="button" class="btn btn-primary btn-lg ">気になる</button></td>
+                    <td style="text-align: center;"><button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#Apply">応募する</button></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    @*分页*@
+    <div class="paginationBox">
+        <table>
+            <tr>
+                <td colspan="5" style="border-bottom:0px !important">
+                    <el-pagination v-model:current-page="pagination.pageIndex"
+                                   :page-sizes="[12, 24, 36]"
+                                   v-model:page-size="pagination.pageSize"
+                                   layout="total, sizes, prev, pager, next, jumper"
+                                   :total="pagination.totalCount"
+                                   @@size-change="handleGetJobs"
+                                   @@current-change="handleGetJobs">
+                    </el-pagination>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    @*右边界*@
+    <div class="jobRightList1 centerStyle layout layoutList02">
+        1
+    </div>
+    <div class="jobRightList2 centerStyle layout layoutList02">
+        2
+    </div>
+    <div class="jobRightList3 centerStyle layout layoutList02">
+        3
+    </div>
+    <div class="jobRightList4 centerStyle layout layoutList02">
+        4
+    </div>
+    <div class="jobRightList5 centerStyle layout layoutList02">
+        5
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        createVueApp({
+            /*返回数据*/
+            data() {
+                return {
+                    jobs: [],
+                    pagination: {
+                        pageIndex: 1,
+                        pageSize: 8,
+                        totalCount: 0
+                    },
+                    iptTitle: '',
+                    iptType: '',
+                    category: '',
+                    title: '',
+                    workplace: '',
+                    contentCheckboxs: []
+                }
+            },
+            /*页面加载完成后回调下方的列表方法*/
+            mounted() {
+                this.category = this.getUrlKey("homeIcon")
+                var title = this.getUrlKey("Title")
+                var workplace = this.getUrlKey("Workplace")
+                this.title = title == null ? '' : decodeURI(title)
+                this.workplace = workplace == null ? '' : decodeURI(workplace)
+                this.handleGetJobs();
+                $('#JobListLeftBarBtn').css('color', '#ae0000')
+            },
+            /*获取列表*/
+            methods: {
+                // 文字长度大于100，显示省略号
+                showEllipsis(text) {
+                    if (text == null) text = ""
+                    let len = text.length;
+                    //if (document.body.clientWidth <= 992 && len > 100) {
+                    //    text = text.substr(0, 100).concat('...');
+                    //}
+                    text = text.substr(0, 100).concat('...');
+                    return text;
+                },
+                handleGetJobs() {
+                    this.pagination.Title = this.iptTitle
+                    this.pagination.Type = this.iptType
+                    this.pagination.Category = this.category
+                    this.pagination.Title = this.title
+                    this.pagination.Workplace = this.workplace
+                    this.getJobs(this.pagination).then(res => {
+                        this.jobs = res.items
+                        this.pagination.totalCount = res.totalCount
+                    })
+                },
+                handleGetContents() {
+                    this.pagination.ContentCheck = this.contentCheckboxs;
+                    this.handleGetJobs();
+                },
+                handleTabClick() {
+
+                },
+                /*发送请求*/
+                getJobs(pagination) {
+                    return this.$http.post('/job/getlist', pagination)
+                },
+                handleClear() {
+                    this.iptTitle = ''
+                    this.iptType = ''
+                },
+                handleDelete(id) {
+                    this.$http.post('/system/deleteJob', id).then(res => {
+                        if (res) {
+                            this.handleGetJobs()
+                        } else {
+                            this.$message({
+                                message: '删除失败',
+                                type: 'error'
+                            });
+                        }
+                    })
+                },
+                getUrlKey(key) {
+                    var reg = new RegExp("(^|&)" + key + "=([^&]*)(&|$)");
+                    var r = location.search.substr(1).match(reg);
+                    if (r != null) return r[2]; return null;
+                }
+            }
+        })
+    </script>
+}

@@ -1,0 +1,97 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    @*<meta name="viewport" content="width=device-width, initial-scale=1.0" />*@
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <title>安心な仕事なら - @ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/tailwind.min.css" />
+    <!-- elemnt-plus -->
+    <link rel="stylesheet" href="~/lib/element-plus/dist/index.css" />
+
+    @*自定义*@
+    <link href="~/css/master.css" rel="stylesheet" />
+    <link href="~/css/mobile.css" rel="stylesheet" />
+    <link href="~/css/common_pc.css" rel="stylesheet" />
+    <link href="~/css/pc.css" rel="stylesheet" />
+    <link href="~/css/tab.css" rel="stylesheet" />
+    <link href="~/css/townwork.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/sidebar.css" />
+    @await RenderSectionAsync("Styles", required: false)
+
+    @*模态框*@
+    <!--bootstrap日历-->
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css"
+          rel="stylesheet">
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdn.bootcss.com/moment.js/2.24.0/moment-with-locales.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js">
+    </script>
+
+
+</head>
+
+<body id="app">
+    @* 全局衔接导航条 *@
+    <partial name="_LeftBar" />
+
+    @* 页面内容 *@
+    <div class="w-full pr-10 container-fluid" id="page-main">
+        <main role="main">
+            @RenderBody()
+        </main>
+    </div>
+
+    @* 右边框导航 *@
+    <partial name="_RightBar" />
+
+    @*<footer class="border-top footer text-muted">
+        <div class="container">
+        &copy; 2021 - 富士平台 - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+        </footer>*@
+
+    @* 底部栏 *@
+    <partial name="_Footer" />
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- vue3 -->
+    <script src="~/lib/vue/dist/vue.global.prod.js" asp-append-version="true"></script>
+    <!-- elemnt-plus -->
+    <script src="~/lib/element-plus/dist/index.full.min.js" asp-append-version="true"></script>
+    <script src="~/lib/element-plus/locale/lang/zh-cn.js" asp-append-version="true"></script>
+    <!-- axios -->
+    <script src="~/lib/axios/dist/axios.min.js" asp-append-version="true"></script>
+
+    <script src="~/js/is.js" asp-append-version="true"></script>
+    <script src="~/js/utils.js" asp-append-version="true"></script>
+    <script src="~/js/loading.js" asp-append-version="true"></script>
+    <script src="~/js/http.js" asp-append-version="true"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    <script>
+        const urlList2 = [
+        'http://localhost:5000/',
+        'http://www.cxqd-japan.com/',
+        'http://localhost:5000/Account/Register',
+        'http://www.cxqd-japan.com/Account/Register',
+        'http://localhost:5000/Account/Login',
+        'http://www.cxqd-japan.com/Account/Login',
+        ]
+if (urlList2.includes(window.location.href)) {
+            $('#page-main').css('padding-right', '0px')
+        } else {
+            $('#page-main').css('padding-right', '2.5rem')
+        }
+    </script>
+    @await RenderSectionAsync("Scripts", required: false)
+    </body>
+
+</html>

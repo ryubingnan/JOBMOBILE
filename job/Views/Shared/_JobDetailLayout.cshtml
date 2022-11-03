@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - job</title>
+    <link rel="stylesheet" href="~/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/tailwind.min.css" />
+    <!-- elemnt-plus -->
+    <link rel="stylesheet" href="~/lib/element-plus/dist/index.css" />
+    @*自定义*@
+    <link href="~/css/master.css" rel="stylesheet" />
+    <link href="~/css/mobile.css" rel="stylesheet" />
+    <link href="~/css/common_pc.css" rel="stylesheet" />
+    <link href="~/css/pc.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    @await RenderSectionAsync("Styles", required: false)
+
+    @*附加导航*@
+    @*模态框*@
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body id="app">
+    @* 全局衔接导航条 *@
+    <partial name="_JobHeader" style="height: 10px" />
+    @* 页面内容 *@
+    <div>
+        <main role="main" class="pb-3" style="width: 100%">
+            <div class="jobDetailArea" style="display:flex">
+                <div class="jobDetailRightArea">
+                    @RenderBody()
+                </div>
+            </div>
+        </main>
+    </div>
+
+    @* 右边框导航 *@
+    <partial name="_RightBar" />
+
+    @* 底部栏 *@
+    @*<partial name="_Footer" />*@
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- vue3 -->
+    <script src="~/lib/vue/dist/vue.global.prod.js" asp-append-version="true"></script>
+
+    <!-- elemnt-plus -->
+    <script src="~/lib/element-plus/dist/index.full.min.js" asp-append-version="true"></script>
+    <script src="~/lib/element-plus/locale/lang/zh-cn.js" asp-append-version="true"></script>
+
+    <!-- axios -->
+    <script src="~/lib/axios/dist/axios.min.js" asp-append-version="true"></script>
+    <script src="~/js/is.js" asp-append-version="true"></script>
+    <script src="~/js/utils.js" asp-append-version="true"></script>
+    <script src="~/js/loading.js" asp-append-version="true"></script>
+    <script src="~/js/http.js" asp-append-version="true"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

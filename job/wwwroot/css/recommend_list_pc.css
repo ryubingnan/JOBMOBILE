@@ -1,0 +1,146 @@
+﻿
+.slider {
+    float: left;
+    list-style: none;
+    position: relative;
+    width: 1024px;
+    padding-bottom: 30px;
+}
+
+.btnC00 {
+    padding: 12px 0 11px !important;
+    width: 198px;
+    color: #333 !important;
+    border-color: #ccc !important;
+    margin-bottom: 0 !important;
+}
+
+.slider li {
+    margin-right: 17px;
+}
+
+    .slider li:first-of-type {
+        margin-left: 3px;
+    }
+
+    .slider li:last-of-type {
+        margin-right: 5px;
+    }
+
+    #recommendList .slider li .title, .slider li .expalin, .slider .button, .slider li .job {
+        padding: 0 20px;
+        height: auto;
+        font-size: 12px;
+        margin-bottom: 0;
+    }
+
+.slider .button {
+    text-align: right;
+    position: absolute;
+    bottom: 20px;
+}
+
+a.btnC00 {
+    font-weight: normal;
+}
+
+.sliderWrap01 {
+    width: auto;
+    height: auto;
+}
+
+.nextload {
+    clear: both;
+    display: block;
+    max-width: 100%;
+    width: 15%;
+    margin: 0 auto;
+}
+
+a.btnMoreRecommend {
+    display: block;
+    width: 100%;
+    padding: 6px 0 6px;
+    border: 1px #0a50a1 solid;
+    border-radius: 10px;
+    background: #fff;
+    color: #0a50a1;
+    font-size: 15px;
+    font-weight: bold;
+    text-decoration: none;
+    text-align: center;
+    line-height: 1.8;
+    box-sizing: border-box;
+}
+
+    a.btnMoreRecommend:hover {
+        background: #ebebeb;
+        text-decoration: none;
+    }
+
+/* リスト表示のレコメンド専用CSS start */
+#recommendList .recommendListArea {
+    display: inline-block;
+    min-width: 100%;
+}
+
+#recommendList ul {
+    width: 100%;
+}
+
+    #recommendList ul li {
+        width: calc(25% - 13px);
+        height: 350px;
+    }
+
+        #recommendList ul li:first-child {
+            margin-left: 0;
+        }
+
+        #recommendList ul li:last-child {
+            margin-right: 0;
+        }
+
+        #recommendList ul li a {
+            display: inline-block;
+            width: 100%;
+        }
+
+            #recommendList ul li a img {
+                width: 100%;
+                margin-bottom: 15px;
+            }
+
+        #recommendList ul li p {
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+            #recommendList ul li p.thumbnail {
+                line-height: 0;
+            }
+
+            #recommendList ul li p a {
+                max-width: 100%;
+            }
+
+        #recommendList ul li .job {
+            display: -webkit-box;
+            overflow: hidden;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            max-height: 36px;
+        }
+
+#recommendList li .expalin span {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 100%;
+    display: inline-block;
+}
+/* リスト表示のレコメンド専用CSS end */
+
+
+
+

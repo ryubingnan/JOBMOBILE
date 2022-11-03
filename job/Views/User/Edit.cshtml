@@ -1,0 +1,67 @@
+﻿@using job.Web.Models.User
+@using job.DataAccess.Enums
+@model EditUserViewModel
+@{
+    ViewData["Title"] = $"Edit User {@Model.UserName}";
+}
+<style>
+    textarea.imgtext {
+        margin-top: -10px;
+    }
+</style>
+<div class="MyRoomAddDiv">
+    <form id="theform" asp-area="" asp-controller="Job" asp-action="AddJob" enctype="multipart/form-data" method="post">
+        <input type="hidden" id="Id" name="Id" value="@Model.Id" />
+        <table>
+            <tr>
+                <td>会員ID</td>
+                <td colspan="2">
+                    <textarea asp-for="UserName" 　value="@Model.UserName" class="form-control" rows="1" placeholder="例：XXXXXXXXX@hotmail.com"></textarea>
+                    <span asp-validation-for="UserName" class="text-danger"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>タイトル</td>
+                <td colspan="2">
+                    <textarea asp-for="Name" 　value="@Model.Name" class="form-control" rows="6" placeholder="例：一般事務・データ入力　◆ほぼ１７時半終業◆１月まで！書類チェックなど／未経験ＯＫ！"></textarea>
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </td>
+            </tr>
+
+            <tr>
+                <td>事業内容</td>
+                <td colspan="2">
+                    <textarea asp-for="Phone" value="@Model.Phone" class="form-control" rows="6" placeholder="例：2018年の設立以来、ソフトウェア開発のみならず、ドローン・プログラミング教育など、幅広い事業を手掛け、毎年対前年比1.4倍～2倍の成長を続ける当社。"></textarea>
+                    <span asp-validation-for="Phone" class="text-danger"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>事業内容</td>
+                <td colspan="2">
+                    <textarea asp-for="Email" value="@Model.Email" class="form-control" rows="6" placeholder="例：2018年の設立以来、ソフトウェア開発のみならず、ドローン・プログラミング教育など、幅広い事業を手掛け、毎年対前年比1.4倍～2倍の成長を続ける当社。"></textarea>
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>その他</td>
+                <td colspan="2">
+                    <textarea asp-for="Gender" value="@Model.Gender" class="form-control" rows="6" placeholder="例：落ち着いた雰囲気/質問しやすい/チームワークがよい/多くの人と接する機会がある/ガンバリをきちんと評価してくれる/同じ派遣会社の人が職場にいる"></textarea>
+                    <span asp-validation-for="Gender" class="text-danger"></span>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><button class="ic_shoulei hide_txt png btn btn-primary btn-lg marginLeft200px " type="submit">掲載する</button></td>
+                <td><button class="ic_shoulei hide_txt png btn btn-primary btn-lg marginLeft100px" type="button" onclick="FormReset()">クリア</button></td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+@*鼠标点击事件*@
+@section Scripts {
+    <script>
+
+        $('#LinkButton4').css('color', '#ae0000')
+    </script>
+}

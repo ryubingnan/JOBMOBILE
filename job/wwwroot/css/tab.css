@@ -1,0 +1,301 @@
+ .tw-tab-wrapper{
+     margin-bottom: 50px;
+ } 
+.tw-tab-header {
+  height: 100px;
+  display: flex;
+  align-items: flex-end;
+  border-bottom: 5px solid #fcbe00;
+}
+.tw-tab-box {
+  flex: 0 0 150px;
+  width: 150px;
+  height: 80px;
+  transition: all 0.2s;
+  margin-right: 10px;
+  border-radius: 5px 5px 0 0;
+  border-top: solid 1px #c3baa3;
+  border-right: solid 1px #c3baa3;
+  border-left: solid 1px #c3baa3;
+  background: linear-gradient(to bottom, #fff, #f4efdf);
+}
+.tw-tab-item {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 600;
+}
+.tw-tab-box.active {
+  height: 90px;
+  background: #fff;
+}
+.tw-tab-box.active .tw-tab-item {
+  border-radius: 5px 5px 0 0;
+  border-top: solid 1px #ffaf00;
+  border-right: solid 1px #ffaf00;
+  border-left: solid 1px #ffaf00;
+  background: linear-gradient(to bottom, #ffd803, #fcbe00);
+}
+
+.tw-tab-detail {
+  padding: 10px;
+  border-top: solid 1px #dcdada;
+  border-right: solid 1px #dcdada;
+  border-left: solid 1px #dcdada;
+  box-shadow: 0 0 5px rgb(0 0 0 / 20%);
+}
+
+.tw-tab-select-wrapper {
+  padding: 10px;
+  border-radius: 5px;
+  background: #fefacd;
+  display: flex;
+  align-items: flex-start;
+}
+.tw-tab-select-title {
+  flex: 0 0 60px;
+  width: 60px;
+  margin-right: 10px;
+}
+.tw-tab-select-list {
+  flex: auto;
+}
+.tw-tab-select-list span {
+  padding: 0 5px;
+}
+
+.tw-tab-submit-wrapper {
+  padding-top: 1px solid #c4c2ba;
+  padding-top: 10px;
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.tw-tab-submit-num {
+  font-size: 14px;
+  font-weight: 600;
+  color: red;
+}
+.tw-tab-submit-btn {
+  padding: 8px 12px;
+  font-weight: 600;
+}
+.tw-tab-submit-btn-primary {
+  margin-left: auto;
+  margin-right: 20px;
+  font-size: 16px;
+  padding: 12px 18px;
+  color: #fff;
+  background: #0065c6;
+}
+
+/* .tw-tab-common-list{} */
+.tw-tab-common-li {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px dotted #c3baa3;
+  padding: 5px 0;
+}
+.tw-tab-common-li-title {
+  flex: 0 0 100px;
+  width: 100px;
+  padding-right: 5px;
+  border-right: 1px solid #c3baa3;
+  margin-right: 5px;
+  font-weight: 600;
+}
+
+
+.tw-tab-area-wrapper{
+  margin: 10px 0;
+}
+.tw-tab-area-list{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.tw-tab-area-item{
+  flex: 0 0 32%;
+  width: 32%;
+  padding: 8px;
+  border: 1px solid #c3baa3;
+  border-radius: 5px;
+  background: linear-gradient(to bottom, #fff, #f2eddb);
+  cursor: pointer;
+}
+.tw-tab-area-item-title{
+  text-align: center;
+  font-weight: 600;
+}
+.tw-tab-area-item-desc{
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.tw-tab-area-checkbox{
+  border: 1px solid #c3baa3;
+  border-radius: 5px;
+  overflow: hidden;
+}
+.tw-tab-area-checkbox-title{
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  justify-content: space-between;
+  background: linear-gradient(to bottom, #fff, #f2eddb);
+  border-bottom: 1px solid #c3baa3;
+}
+.tw-tab-area-checkbox-title span{
+  cursor: pointer;
+}
+.tw-tab-area-checkbox-all{
+  padding: 10px 20px;
+  background: linear-gradient(to bottom, #fff, #f2eddb);
+  border-bottom: 1px solid #c3baa3;
+}
+.tw-tab-area-checkbox-list{
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.tw-tab-area-checkbox-item{
+  flex: 0 0 33.333%;
+  width: 33.333%;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.tw-tab-area-checkbox-item input[type="checkbox"] {
+  margin: 0;
+}
+.tw-tab-area-checkbox-item span:nth-child(2){
+  padding: 0 5px;
+}
+
+.tw-toggle-wrapper{
+  margin-top: 10px;
+}
+.tw-toggle-box{
+  border: 1px solid #c4c2ba;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+.tw-toggle-title{
+  background: linear-gradient(to bottom, #fff, #f2eddb);
+  /* border-bottom: 1px solid #c4c2ba; */
+  display: flex;
+  align-items: center;
+  height: 45px;
+  padding: 0 10px;
+}
+.tw-toggle-name{
+  font-size: 14px;
+  font-weight: 600;
+  color: #0066d2;
+  margin-right: auto;
+  padding-left: 5px;
+}
+.tw-toggle-desc{
+  flex: 0 0 40%;
+  width: 40%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.tw-toggle-list{}
+.tw-toggle-item{
+  border-top: 1px solid #c4c2ba;
+}
+.tw-toggle-list-title{
+  background: linear-gradient(to bottom, #fff, #f2eddb);
+  border-bottom: 1px solid #c4c2ba;
+  display: flex;
+  align-items: center;
+  height: 45px;
+  padding: 0 10px;
+}
+.tw-toggle-list-name{
+  font-size: 14px;
+  font-weight: 600;
+  color: #0066d2;
+  padding-left: 15px;
+}
+.tw-toggle-list-num{
+  margin-right: auto;
+}
+.tw-toggle-box2{
+  margin-top: 10px;
+}
+.tw-toggle-box2 .tw-toggle-item{
+  margin-bottom: 10px;
+  border: 1px solid #c4c2ba;
+  border-radius: 4px;
+}
+.tw-table-select{
+    min-width: 80px;
+    border: 1px solid #aaa;
+}
+.tw-table-checkoubox-box {
+    flex: 0 0 32.3333%;
+    width: 32.3333%;
+    margin-right: 1%;
+    display: inline-flex;
+    align-items: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.tw-table-checkoubox-box input{
+    margin-right: 5px;
+    margin-top: 0;
+}
+.tw-table-next-box{
+    margin-bottom: 10px;
+}
+.tw-table-next-title {
+    padding-bottom: 5px;
+    border-bottom: 1px solid #dcdada;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+
+@media (max-width: 767px) {
+    .tw-tab-box{
+        flex:  0 0 25%;
+        width: 25%;
+        margin-right: 0;
+    }
+    .tw-tab-item{
+        font-size: 12px;
+        font-weight: normal;
+    }
+    .tw-tab-item img{
+        height: 40%;
+    }
+    .tw-tab-common-li-title{
+        flex: 0 0 80px;
+        width: 80px;
+    }
+    .tw-tab-area-checkbox-item {
+        flex: 0 0 50%;
+        width: 50%;
+    }
+    .tw-table-select{
+        max-width: auto;
+        width: 48%;
+        margin-right: 2%;
+    }
+    .tw-table-checkoubox-box {
+        flex: 0 0 49%;
+        width: 49%;
+    }
+}

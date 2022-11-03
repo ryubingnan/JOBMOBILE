@@ -1,0 +1,52 @@
+﻿@{
+    ViewData["Title"] = "お問い合わせする";
+    Layout = "_JobLayout";
+}
+@using job.Web.Models.System
+@model AskViewModel
+<style>
+    textarea.imgtext {
+        margin-top: -10px;
+    }
+</style>
+<div class="MyRoomAddDiv">
+    <form id="theform" asp-area="" asp-controller="Ask" asp-action="AddAsk" enctype="multipart/form-data" method="post">
+        @*<input type="hidden" id="Id" name="Id" value="@Model.Id" />*@
+        <table>
+            <tr>
+                <td>会員ID</td>
+                <td colspan="2">
+                    <textarea asp-for="MemberID" 　value="" class="form-control" rows="1" placeholder="例：XXXXXXXXX@hotmail.com"></textarea>
+                    <span asp-validation-for="MemberID" class="text-danger"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>タイトル</td>
+                <td colspan="2">
+                    <textarea asp-for="Title" 　value="" class="form-control" rows="6" placeholder="例：一般事務・データ入力　◆ほぼ１７時半終業◆１月まで！書類チェックなど／未経験ＯＫ！"></textarea>
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>内容</td>
+                <td colspan="2">
+                    <textarea asp-for="Content" value="" class="form-control" rows="6" placeholder="応募条件
+【必須スキル・経験】■実務経験（2年以上）■iOS、Androidのいずれか（もしくは両方）■iOS：swiftメインでのアプリ開発（obj-Cも多少分かれば尚可）■Android：Kotlin、Javaでのアプリ開発【歓迎スキル・経験】■スケジューリング能力■UX観点での企画、設計力■能動的な姿勢"></textarea>
+                    <span asp-validation-for="Content" class="text-danger"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>その他</td>
+                <td colspan="2">
+                    <textarea asp-for="Other" value="" class="form-control" rows="6" placeholder="例：落ち着いた雰囲気/質問しやすい/チームワークがよい/多くの人と接する機会がある/ガンバリをきちんと評価してくれる/同じ派遣会社の人が職場にいる"></textarea>
+                    <span asp-validation-for="Other" class="text-danger"></span>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><button class="ic_shoulei hide_txt png btn btn-primary btn-lg marginLeft200px " type="submit">提出する</button></td>
+                <td><button class="ic_shoulei hide_txt png btn btn-primary btn-lg marginLeft100px" type="button" onclick="FormReset()">クリア</button></td>
+            </tr>
+        </table>
+    </form>
+</div>

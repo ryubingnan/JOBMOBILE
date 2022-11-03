@@ -1,0 +1,263 @@
+﻿@charset "utf-8";
+
+/*--------------------------------------------------
+  勤務地一覧
+--------------------------------------------------*/
+.locationchange {
+    display: inline-block;
+    position: relative;
+    font-size: 14px;
+    font-weight: bold;
+    padding-right: 15px;
+    margin-top: 15px;
+}
+
+    .locationchange::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        right: 0;
+        width: 5px;
+        height: 5px;
+        font-weight: bold;
+        border-style: solid;
+        border-color: rgba(0,127,195,1);
+        border-width: 0 2px 2px 0;
+        -webkit-transform: rotate(45deg);
+        transform: rotate(45deg);
+        margin-top: -6px;
+    }
+
+    .locationchange.open::before {
+        -webkit-transform: rotate(-135deg);
+        transform: rotate(-135deg);
+        margin-top: -3px;
+    }
+
+.location_list_accordion .location_item {
+    margin-top: 10px;
+}
+
+    .location_list_accordion .location_item li {
+        position: relative;
+        color: #222222;
+        font-size: 14px;
+        line-height: 1.5;
+        padding-left: 18px;
+    }
+
+        .location_list_accordion .location_item li:not(:last-child) {
+            margin-bottom: 6px;
+        }
+
+        .location_list_accordion .location_item li::before {
+            content: '';
+            display: block;
+            position: absolute;
+            top: 0.5em;
+            left: 0;
+            width: 6px;
+            height: 6px;
+            background-color: #3c3c3c;
+            -webkit-border-radius: 50%;
+            border-radius: 50%;
+        }
+
+        .location_list_accordion .location_item li .nearest_stn {
+            display: inline-block;
+            margin-left: 14px;
+        }
+/*--------------------------------------------------
+  勤務地一覧(続きを読む)
+--------------------------------------------------*/
+.location_list_accordion.location_list_wrap {
+    position: relative;
+    height: 100px;
+    padding-bottom: 380px;
+    overflow: hidden;
+}
+
+    .location_list_accordion.location_list_wrap.open {
+        height: auto;
+        padding-bottom: 38px;
+    }
+
+.location_list_accordion .location_list_more_btn {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: left;
+    background-color: #ffffff;
+    box-shadow: 0 0 75px 35px #ffffff;
+    z-index: 1;
+}
+
+    .location_list_accordion .location_list_more_btn a {
+        position: relative;
+        display: inline-block;
+        font-size: 14px;
+        font-weight: bold;
+        line-height: 1em;
+        text-align: left;
+        text-decoration: none;
+        padding: 10px 15px 10px 0;
+        outline: none;
+        background: #fff;
+        box-shadow: none;
+    }
+
+        .location_list_accordion .location_list_more_btn a::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            right: 0;
+            width: 5px;
+            height: 5px;
+            font-weight: bold;
+            border-style: solid;
+            border-color: rgba(0,127,195,1);
+            border-width: 0 2px 2px 0;
+            -webkit-transform: rotate(45deg);
+            transform: rotate(45deg);
+            margin-top: -6px;
+        }
+
+.location_list_accordion.location_list_wrap.open .location_list_more_btn {
+    box-shadow: none;
+}
+
+    .location_list_accordion.location_list_wrap.open .location_list_more_btn a::before {
+        -webkit-transform: rotate(-135deg);
+        transform: rotate(-135deg);
+        margin-top: -3px;
+    }
+
+a.btnDetail01, a.btnDetail02 {
+    font-size: 20px !important;
+}
+
+.scroll_head .scroll_head_inner .text_area {
+    width: 602px;
+}
+
+.scroll_head .scroll_head_inner .btn_area {
+    width: 308px;
+}
+
+.modDetailBtn .sdrCompanyTitle {
+    text-align: center;
+    padding-bottom: 30px;
+}
+
+.modDetail02 dl .sdrCompany {
+    margin-top: 10px;
+}
+
+.scroll_head .scroll_head_inner .three_btn {
+    width: 455px;
+}
+/*--------------------------------------------------
+  scroll_head_jsd(CTAエリア改善用）
+--------------------------------------------------*/
+.scroll_head_jsd {
+    /* 既存上書き修正 */
+    position: fixed;
+    bottom: -90px;
+    left: 0;
+    right: 0;
+    width: 100%;
+    min-width: 1200px;
+    height: 89px;
+    background: rgba(255, 255, 255, 0);
+    border: 0;
+    margin: 0 auto;
+    -webkit-transition-property: bottom;
+    -webkit-transition-duration: 0.2s;
+    -webkit-transition-timing-function: linear;
+    transition-property: bottom;
+    transition-duration: 0.2s;
+    transition-timing-function: linear;
+    z-index: 6000;
+}
+
+    .scroll_head_jsd.open {
+        bottom: 0;
+    }
+
+    .scroll_head_jsd .scroll_head_inner_base {
+        width: auto;
+        height: 89px;
+        background-origin: padding-box;
+        background-repeat: no-repeat;
+        background-color: #fafafa;
+        box-shadow: 0 3px 12px 0 rgba(0, 0, 0, 0.15);
+        padding: 3px 47px 15px;
+        margin: 0 auto;
+        -moz-border-radius: 35px;
+        -ms-border-radius: 35px;
+        -webkit-box-sizing: border-box;
+        z-index: 1;
+        -moz-box-sizing: border-box;
+        -ms-box-sizing: border-box;
+        box-sizing: border-box;
+        overflow: hidden;
+    }
+
+    .scroll_head_jsd .scroll_head_inner {
+        width: 1024px;
+        height: 89px;
+        background-origin: padding-box;
+        background-repeat: no-repeat;
+        background-color: #fafafa;
+        padding: 3px 47px 15px;
+        margin: 0 auto;
+        -moz-border-radius: 35px;
+        -ms-border-radius: 35px;
+        -webkit-box-sizing: border-box;
+        z-index: 1;
+        -moz-box-sizing: border-box;
+        -ms-box-sizing: border-box;
+        box-sizing: border-box;
+        overflow: hidden;
+    }
+
+        .scroll_head_jsd .scroll_head_inner .text_area {
+            float: left;
+            width: 470px;
+            padding: 0;
+            padding-top: 10px;
+            margin: 0 auto;
+        }
+
+            .scroll_head_jsd .scroll_head_inner .text_area .job_title {
+                color: #222222;
+                font-size: 14px;
+                font-weight: bold;
+                margin-bottom: 0;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                overflow: hidden;
+            }
+
+            .scroll_head_jsd .scroll_head_inner .text_area .job_company {
+                color: #808080;
+                font-size: 12px;
+                line-height: 1.5;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                overflow: hidden;
+            }
+
+        .scroll_head_jsd .scroll_head_inner .btn_area {
+            float: right;
+            height: auto;
+        }
+/*--------------------------------------------------
+  スクロールヘッダー(CTAエリア改善用）
+--------------------------------------------------*/
+.scrollHeadJsd a.btnJob01,
+.scrollHeadJsd a.btnJob02,
+.scrollHeadJsd a.btnTab02 {
+    width: 142px;
+}

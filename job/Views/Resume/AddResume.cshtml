@@ -1,0 +1,414 @@
+﻿@{
+    ViewData["Title"] = "履歴書";
+    Layout = "_JobLayout";
+}
+@using job.Web.Models.System
+@using System.Security.Claims
+@model ResumeViewModel
+<style>
+    textarea.imgtext {
+        margin-top: -10px;
+    }
+</style>
+<div class="MyRoomAddDiv">
+    <form id="theform" asp-area="" asp-controller="Resume" asp-action="AddResume" enctype="multipart/form-data" method="post">
+        <input type="hidden" name="MemberID" value="@User.FindFirst(ClaimTypes.Email).Value">
+        <table>
+            <tr>
+                <td>お名前</td>
+                <td colspan="2">
+                    <textarea asp-for="Name" 　value="@Model.Name" class="form-control" rows="1" placeholder="例：XXXXXXXXX@hotmail.com"></textarea>
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>カタカナ</td>
+                <td colspan="2">
+                    <textarea asp-for="Katakana" 　value="@Model.Katakana" class="form-control" rows="6" placeholder="例：一般事務・データ入力　◆ほぼ１７時半終業◆１月まで！書類チェックなど／未経験ＯＫ！"></textarea>
+                    <span asp-validation-for="Katakana" class="text-danger"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>性別</td>
+                <td colspan="2">
+                    @{
+                        List<SelectListItem> selectItems = new List<SelectListItem>();
+
+                        selectItems.Add(new SelectListItem
+                        {
+                            Text = "ご選択",
+                            Value = "0",
+                            Selected = true
+                        });
+
+                        selectItems.Add(new SelectListItem
+                        {
+                            Text = "男",
+                            Value = "Man"
+                        });
+
+                        selectItems.Add(new SelectListItem
+                        {
+                            Text = "女",
+                            Value = "Woman"
+                        });
+                        if (Model.Id > 0)
+                        {
+                            var item = selectItems.FirstOrDefault(t => t.Value == Model.Sex);
+                            if (item is not null)
+                            {
+                                item.Selected = true;
+                            }
+                        }
+                        <select asp-for="Sex" asp-items="@selectItems" class="form-control"></select>
+                        <span asp-validation-for="Sex" class="text-danger"></span>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <td>生年月日</td>
+                <td colspan="2">
+                    <textarea asp-for="BirthDate" 　value="@Model.BirthDate" class="form-control" rows="6" placeholder="例：一般事務・データ入力　◆ほぼ１７時半終業◆１月まで！書類チェックなど／未経験ＯＫ！"></textarea>
+                    <span asp-validation-for="BirthDate" class="text-danger"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>年齢</td>
+                <td colspan="2">
+                    <textarea asp-for="Age" 　value="@Model.Age" class="form-control" rows="6" placeholder="例：一般事務・データ入力　◆ほぼ１７時半終業◆１月まで！書類チェックなど／未経験ＯＫ！"></textarea>
+                    <span asp-validation-for="Age" class="text-danger"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>郵便番号</td>
+                <td colspan="2">
+                    <textarea asp-for="PostCode" value="@Model.PostCode" class="form-control" rows="6" placeholder="例：2018年の設立以来、ソフトウェア開発のみならず、ドローン・プログラミング教育など、幅広い事業を手掛け、毎年対前年比1.4倍～2倍の成長を続ける当社。"></textarea>
+                    <span asp-validation-for="PostCode" class="text-danger"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>住所</td>
+                <td colspan="2">
+                    @{
+                        List<SelectListItem> selectListItems = new List<SelectListItem>();
+
+                        selectListItems.Add(new SelectListItem
+                        {
+                            Text = "ご選択",
+                            Value = "0",
+                            Selected = true
+                        });
+
+                        selectListItems.Add(new SelectListItem
+                        {
+                            Text = "北海道",
+                            Value = "food"
+                        });
+                        selectListItems.Add(new SelectListItem
+                        {
+                            Text = "販売",
+                            Value = "sale"
+                        });
+                        selectListItems.Add(new SelectListItem
+                        {
+                            Text = "レジャー/エンタメ",
+                            Value = "entertainment"
+                        });
+                        selectListItems.Add(new SelectListItem
+                        {
+                            Text = "教育",
+                            Value = "study"
+                        });
+                        selectListItems.Add(new SelectListItem
+                        {
+                            Text = "IT",
+                            Value = "it"
+                        });
+                        selectListItems.Add(new SelectListItem
+                        {
+                            Text = "物流",
+                            Value = "logistics"
+                        });
+                        selectListItems.Add(new SelectListItem
+                        {
+                            Text = "工場/製造",
+                            Value = "maker"
+                        });
+                        selectListItems.Add(new SelectListItem
+                        {
+                            Text = "医療/介護",
+                            Value = "medical"
+                        });
+                        selectListItems.Add(new SelectListItem
+                        {
+                            Text = "営業",
+                            Value = "business"
+                        });
+                        selectListItems.Add(new SelectListItem
+                        {
+                            Text = "建築",
+                            Value = "architecture"
+                        });
+                        selectListItems.Add(new SelectListItem
+                        {
+                            Text = "出版/マスコミ",
+                            Value = "publish"
+                        });
+                        selectListItems.Add(new SelectListItem
+                        {
+                            Text = "芸能",
+                            Value = "workmanship"
+                        });
+                        selectListItems.Add(new SelectListItem
+                        {
+                            Text = "専門職",
+                            Value = "profession"
+                        });
+                        selectListItems.Add(new SelectListItem
+                        {
+                            Text = "軽作業",
+                            Value = "easy"
+                        });
+                        selectListItems.Add(new SelectListItem
+                        {
+                            Text = "接客",
+                            Value = "service"
+                        });
+                        selectListItems.Add(new SelectListItem
+                        {
+                            Text = "事務",
+                            Value = "office"
+                        });
+                        selectListItems.Add(new SelectListItem
+                        {
+                            Text = "その他",
+                            Value = "other"
+                        });
+                        if (Model.Id > 0)
+                        {
+                            var item = selectListItems.FirstOrDefault(t => t.Value == Model.Prefectures);
+                            if (item is not null)
+                            {
+                                item.Selected = true;
+                            }
+                        }
+                    }
+
+                    <select asp-for="Prefectures" asp-items="@selectListItems" class="form-control"></select>
+                    <span asp-validation-for="Prefectures" class="text-danger"></span>
+                    <textarea asp-for="Address" value="@Model.Address" class="form-control" rows="1" placeholder="例：2018年の設立以来、ソフトウェア開発のみならず、ドローン・プログラミング教育など、幅広い事業を手掛け、毎年対前年比1.4倍～2倍の成長を続ける当社。"></textarea>
+                    <span asp-validation-for="Address" class="text-danger"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>最寄駅</td>
+                <td colspan="2">
+                    <textarea asp-for="Station" value="@Model.Station" class="form-control" rows="6" placeholder="例：時給1,150円
+(交通費別途支給 ※当社規定あり)"></textarea>
+                    <span asp-validation-for="Station" class="text-danger"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>携帯電話</td>
+                <td colspan="2">
+                    <textarea asp-for="Phone" value="@Model.Phone" class="form-control" rows="6" placeholder="例：2018年の設立以来、ソフトウェア開発のみならず、ドローン・プログラミング教育など、幅広い事業を手掛け、毎年対前年比1.4倍～2倍の成長を続ける当社。"></textarea>
+                    <span asp-validation-for="Phone" class="text-danger"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>固定電話</td>
+                <td colspan="2">
+                    <textarea asp-for="FixedPhone" value="@Model.FixedPhone" class="form-control" rows="6" placeholder="例：【お仕事の内容】
+入力業務、書類チェック、スキャニング、シフトデータの管理、郵便物対応、確認の電話応対などをお願いします。"></textarea>
+                    <span asp-validation-for="FixedPhone" class="text-danger"></span>
+                </td>
+            </tr>
+
+            <tr>
+                <td>メールアドレス</td>
+                <td colspan="2">
+                    <textarea asp-for="Email" value="@Model.Email" class="form-control" rows="6" placeholder="例：◆未経験者歓迎！
+＜こんな方にオススメ＞
+初心者・未経験OK！働きながらスキルアップしていきたい方やオフィスワークに興味がある方。
+Wordの業務経験やスキルを活かして仕事をしたい方。
+Excelの業務経験やスキルを活かして仕事をしたい方。"></textarea>
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>配偶者</td>
+                <td colspan="2">
+                    <textarea asp-for="Consort" value="@Model.Consort" class="form-control" rows="6" placeholder="例：時給1,150円
+(交通費別途支給 ※当社規定あり)"></textarea>
+                    <span asp-validation-for="Consort" class="text-danger"></span>
+                </td>
+            </tr>
+            <tr>
+            <tr>
+                <td>扶養家族</td>
+                <td colspan="2">
+                    <textarea asp-for="Dependents" value="@Model.Dependents" class="form-control" rows="6" placeholder="例：鳥取県米子市"></textarea>
+                    <span asp-validation-for="Dependents" class="text-danger"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>学歴</td>
+                <td colspan="2">
+                    <textarea asp-for="AcademicBackground1" value="@Model.AcademicBackground1" class="form-control" rows="6" placeholder="例：勤務曜日：月火水木金
+08:30～17:30
+（※残業はほとんどありません。※休憩は６０分です。）"></textarea>
+                    <span asp-validation-for="AcademicBackground1" class="text-danger"></span>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td colspan="2">
+                    <textarea asp-for="AcademicBackground2" value="@Model.AcademicBackground2" class="form-control" rows="6" placeholder="例：勤務曜日：月火水木金
+08:30～17:30
+（※残業はほとんどありません。※休憩は６０分です。）"></textarea>
+                    <span asp-validation-for="AcademicBackground2" class="text-danger"></span>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td colspan="2">
+                    <textarea asp-for="AcademicBackground3" value="@Model.AcademicBackground3" class="form-control" rows="6" placeholder="例：勤務曜日：月火水木金
+08:30～17:30
+（※残業はほとんどありません。※休憩は６０分です。）"></textarea>
+                    <span asp-validation-for="AcademicBackground3" class="text-danger"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>資格</td>
+                <td colspan="2">
+                    <textarea asp-for="Qualification" value="@Model.Qualification" class="form-control" rows="6" placeholder="例：交通費支給あり"></textarea>
+                    <span asp-validation-for="Qualification" class="text-danger"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>語学力</td>
+                <td colspan="2">
+                    <textarea asp-for="Language" value="@Model.Language" class="form-control" rows="6" placeholder="例：交通費支給あり"></textarea>
+                    <span asp-validation-for="Language" class="text-danger"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>自己PR</td>
+                <td colspan="2">
+                    <textarea asp-for="SelfPR" value="@Model.SelfPR" class="form-control" rows="6" placeholder="例：有給休暇
+健康診断
+社会保険完備（雇用・労災・健康・厚生年金　※加入条件は別途規定があります。）"></textarea>
+                    <span asp-validation-for="SelfPR" class="text-danger"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>職務経歴</td>
+                <td colspan="2">
+                    <textarea asp-for="JobCareer1" value="@Model.JobCareer1" class="form-control" rows="6" placeholder="例：派遣スタッフ"></textarea>
+                    <span asp-validation-for="JobCareer1" class="text-danger"></span>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td colspan="2">
+                    <textarea asp-for="JobCareer2" value="@Model.JobCareer2" class="form-control" rows="6" placeholder="例：派遣スタッフ"></textarea>
+                    <span asp-validation-for="JobCareer2" class="text-danger"></span>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td colspan="2">
+                    <textarea asp-for="JobCareer3" value="@Model.JobCareer3" class="form-control" rows="6" placeholder="例：派遣スタッフ"></textarea>
+                    <span asp-validation-for="JobCareer3" class="text-danger"></span>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td colspan="2">
+                    <textarea asp-for="JobCareer4" value="@Model.JobCareer4" class="form-control" rows="6" placeholder="例：派遣スタッフ"></textarea>
+                    <span asp-validation-for="JobCareer4" class="text-danger"></span>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td colspan="2">
+                    <textarea asp-for="JobCareer5" value="@Model.JobCareer5" class="form-control" rows="6" placeholder="例：派遣スタッフ"></textarea>
+                    <span asp-validation-for="JobCareer5" class="text-danger"></span>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td colspan="2">
+                    <textarea asp-for="JobCareer6" value="@Model.JobCareer6" class="form-control" rows="6" placeholder="例：派遣スタッフ"></textarea>
+                    <span asp-validation-for="JobCareer6" class="text-danger"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>経験／スキル</td>
+                <td colspan="2">
+                    <textarea asp-for="Experience" value="@Model.Experience" class="form-control" rows="6" placeholder="例：2022年11月～長期"></textarea>
+                    <span asp-validation-for="Experience" class="text-danger"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>希望条件</td>
+                <td colspan="2">
+                    <textarea asp-for="Conditions" value="@Model.Conditions" class="form-control" rows="6" placeholder="例：※土・日・祝がお休みです。"></textarea>
+                    <span asp-validation-for="Conditions" class="text-danger"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>補充内容</td>
+                <td colspan="2">
+                    <textarea asp-for="Content" value="@Model.Content" class="form-control" rows="6" placeholder="応募条件
+【必須スキル・経験】■実務経験（2年以上）■iOS、Androidのいずれか（もしくは両方）■iOS：swiftメインでのアプリ開発（obj-Cも多少分かれば尚可）■Android：Kotlin、Javaでのアプリ開発【歓迎スキル・経験】■スケジューリング能力■UX観点での企画、設計力■能動的な姿勢"></textarea>
+                    <span asp-validation-for="Content" class="text-danger"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>その他</td>
+                <td colspan="2">
+                    <textarea asp-for="Other" value="@Model.Other" class="form-control" rows="6" placeholder="例：落ち着いた雰囲気/質問しやすい/チームワークがよい/多くの人と接する機会がある/ガンバリをきちんと評価してくれる/同じ派遣会社の人が職場にいる"></textarea>
+                    <span asp-validation-for="Other" class="text-danger"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>最新写真</td>
+                <td>
+                    <img id="Img1" src="@Model.Img" style="width:354px;height:236px;" />
+                    <input type="hidden" name="Img1" value="@Model.Img" />
+                    <input type="file" id="FileImg" name="FileImg" accept="image/png,image/jpeg,image/gif" onchange="viewImage(this,'Img')" />
+                </td>
+            <tr>
+                <td></td>
+                <td><button class="ic_shoulei hide_txt png btn btn-primary btn-lg marginLeft200px " type="submit">提出する</button></td>
+                <td><button class="ic_shoulei hide_txt png btn btn-primary btn-lg marginLeft100px" type="button" onclick="FormReset()">クリア</button></td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+@*鼠标点击事件*@
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+    <script>
+        function FormReset() {
+            $("#theform *").not(":button, :submit, :reset, :hidden").val("").removeAttr("checked").removeAttr("src").remove("selected");
+        }
+
+        function viewImage(e, img) {
+            var file = $(e).prop('files')[0];
+            console.log(file)
+            if (file) {
+                var reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onloadend = function (even) {
+                    console.log(even.currentTarget.result)
+                    $('#' + img).attr("src", even.currentTarget.result);
+                }
+            }
+        }
+
+        $('#LinkButton1').css('color', 'red')
+    </script>
+}

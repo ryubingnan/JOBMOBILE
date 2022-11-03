@@ -1,0 +1,97 @@
+﻿<body>
+    <div class="row homeMyRoomLeftArea col-xs-3" id="myScrollspy">
+        @if (Context.User.IsInRole("admin".ToLower()))
+        {
+        <ul>
+            <li class="active"><a href="#section-1">管理者</a></li>
+            <li>
+                <a id="JobListLeftBarBtn" asp-area="" asp-controller="Job" asp-action="JobList">掲載一覧</a>
+            </li>
+            <li>
+                <a id="JobListMngLeftBarBtn" asp-area="" asp-controller="Job" asp-action="JobListMng">掲載一覧管理</a>
+            </li>
+            <li>
+                <a id="AddJobLeftBarBtn" asp-area="" asp-controller="Job" asp-action="AddJob">求人掲載</a>
+            </li>
+            <li>
+                <a id="CompanyLeftBarBtn" asp-area="" asp-controller="Company" asp-action="Index">企業一覧</a>
+            </li>
+            <li>
+                <a id="UserLeftBarBtn" asp-area="" asp-controller="User" asp-action="Index">応募者一覧</a>
+            </li>
+            <li>
+                <a id="NewsListLeftBarBtn" asp-area="" asp-controller="News" asp-action="NewsList">ニュース一覧</a>
+            </li>
+            <li>
+                <a id="AddNewsLeftBarBtn" asp-area="" asp-controller="News" asp-action="AddNews">ニュース掲載</a>
+            </li>
+            <li>
+                <a id="LinkButton5" asp-area="" asp-controller="Ask" asp-action="AskLists">問合わせ管理</a>
+            </li>
+        </ul>
+        }
+        else if (Context.User.IsInRole("company".ToLower()))
+        {
+    <ul>
+        <li style=" background-color: #999999; color: #f0f0f0;">企業様</li>
+        <li id="IndustryLeftBtn" data-toggle="modal" data-target="#Industry">
+            <a>業種</a>
+        </li>
+        <li id="OccupationLeftBtn" data-toggle="modal" data-target="#Occupation">
+            <a>職種</a>
+        </li>
+        <li id="AreaLeftBtn" data-toggle="modal" data-target="#Area">
+            <a>勤務地</a>
+        </li>
+        <li id="OccupationLeftBtn" data-toggle="modal" data-target="#Occupation">
+            <a>年収</a>
+        </li>
+        <li id="OccupationLeftBtn" data-toggle="modal" data-target="#Occupation">
+            <a>雇用形態</a>
+        </li>
+        <li id="OccupationLeftBtn" data-toggle="modal" data-target="#Occupation">
+            <a>こだわり</a>
+        </li>
+        <li id="OccupationLeftBtn" data-toggle="modal" data-target="#Occupation">
+            <a>詳細条件</a>
+        </li>
+    </ul>
+        }
+        else if (Context.User.IsInRole("person".ToLower()))
+        {
+            <ul class="nav nav-tabs nav-stacked" data-spy="affix" data-offset-top="100">
+                <li class="active"><a href="#section-1">検索条件</a></li>
+                <li>
+                    <a id="LinkButton12" asp-area="" asp-controller="Job" asp-action="JobList">掲載一覧</a>
+                </li>
+                <li>
+                    <a id="LinkButton13" asp-area="" asp-controller="User" asp-action="Index">応募一覧</a>
+                </li>
+                <li>
+                    <a id="LinkButton14" asp-area="" asp-controller="System" asp-action="AddPickup">応募管理</a>
+                </li>
+                <li>
+                    <a id="LinkButton15" asp-area="" asp-controller="System" asp-action="AddGuide">応募管理</a>
+                </li>
+                <li>
+                    <a id="LinkButton16" asp-area="" asp-controller="Ask" asp-action="AddAsk">お問い合わせ</a>
+                </li>
+                <li>
+                    <a id="LinkButton17" asp-area="" asp-controller="Resume" asp-action="AddResume">履歴登録</a>
+                </li>
+                <li>
+                    <a id="LinkButton18" asp-area="" asp-controller="System" asp-action="AddPlay">履歴更新</a>
+                </li>
+                <li>
+                    <a id="LinkButton19" asp-area="" asp-controller="System" asp-action="AddPlay">パスワード変更</a>
+                </li>
+            </ul>
+        }
+    </div>
+
+    @{
+        string type = string.Empty;
+        if (User.Identity.IsAuthenticated)
+            type = User.Claims?.FirstOrDefault(c => c.Type == System.Security.Claims.ClaimTypes.Role).Value;
+    }
+</body>

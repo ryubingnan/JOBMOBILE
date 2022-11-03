@@ -1,0 +1,10 @@
+﻿
+@charset "utf-8";
+
+.recommendUser_View .modTypeBorder01 {
+    background: #f2fcff;
+    padding: 0;
+    box-shadow: none;
+    border-radius: 0;
+    overflow: visible;
+}
